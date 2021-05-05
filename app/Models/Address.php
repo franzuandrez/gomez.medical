@@ -11,6 +11,7 @@ class Address extends Model
 
 
     protected $table = 'address';
+    protected $primaryKey = 'address_id';
     protected $fillable = [
         'address_line_1',
         'address_line_2',
