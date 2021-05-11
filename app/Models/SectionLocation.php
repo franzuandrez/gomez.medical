@@ -20,6 +20,12 @@ class SectionLocation extends Model
         return $this->belongsTo(Warehouse::class, 'warehouse_id', 'warehouse_id');
     }
 
+
+    public function corridors(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Corridor::class, 'section_id', 'section_id');
+    }
+
     public const CREATED_AT = 'createdAt';
     public const UPDATED_AT = 'updatedAt';
 }
