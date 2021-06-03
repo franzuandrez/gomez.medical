@@ -49,9 +49,8 @@ class WarehouseController extends Controller
      * Display the specified resource.
      *
      * @param Warehouse $warehouse
-     * @return Response
      */
-    public function show(Warehouse $warehouse)
+    public function show(Warehouse $warehouse): WarehouseResource
     {
         //
         return new WarehouseResource($warehouse);
@@ -63,21 +62,31 @@ class WarehouseController extends Controller
      *
      * @param Request $request
      * @param Warehouse $warehouse
-     * @return Response
      */
-    public function update(Request $request, Warehouse $warehouse): Response
+    public function update(Request $request, Warehouse $warehouse)
     {
         //
+
+
+        $warehouse->name = $request->get('name');
+        $warehouse->save();
+
+
+        return new WarehouseResource($warehouse);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Warehouse $warehouse
-     * @return Response
      */
-    public function destroy(Warehouse $warehouse): Response
+    public function destroy(Warehouse $warehouse)
     {
         //
+
+        $warehouse->delete();
+
+        return response('', 204);
+
     }
 }
