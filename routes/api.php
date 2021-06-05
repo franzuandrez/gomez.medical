@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('v1/warehouses', \App\Http\Controllers\Api\V1\WarehouseController::class);
 Route::apiResource('v1/sections', \App\Http\Controllers\Api\V1\SectionLocationController::class);
+Route::apiResource('v1/corridors', \App\Http\Controllers\Api\V1\CorridorController::class);
+Route::get('v1/warehouses/{id}/sections', [\App\Http\Controllers\Api\V1\WarehouseSectionsController::class, 'index']);
