@@ -14,7 +14,8 @@ class SectionLocation extends Model
     protected $fillable = [
         'name'
     ];
-
+    public const CREATED_AT = 'createdAt';
+    public const UPDATED_AT = 'updatedAt';
     public function warehouse(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Warehouse::class, 'warehouse_id', 'warehouse_id');
@@ -26,6 +27,5 @@ class SectionLocation extends Model
         return $this->hasMany(Corridor::class, 'section_id', 'section_id');
     }
 
-    public const CREATED_AT = 'createdAt';
-    public const UPDATED_AT = 'updatedAt';
+
 }
