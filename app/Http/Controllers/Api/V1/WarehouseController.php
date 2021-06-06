@@ -16,7 +16,7 @@ class WarehouseController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return WarehouseResource
      */
     public function index()
     {
@@ -69,7 +69,7 @@ class WarehouseController extends Controller
 
 
         $warehouse->name = $request->get('name');
-        $warehouse->save();
+        $warehouse->update();
 
 
         return new WarehouseResource($warehouse);

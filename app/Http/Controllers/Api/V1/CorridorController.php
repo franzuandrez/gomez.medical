@@ -67,7 +67,6 @@ class CorridorController extends Controller
     public function update(Request $request, Corridor $corridor): CorridorResource
     {
         //
-        $corridor = new Corridor();
         $corridor->section_id = $request->get('section_id');
         $corridor->name = $request->get('name');
         $corridor->save();
