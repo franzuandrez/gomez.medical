@@ -10,7 +10,6 @@ class ProductVendor extends Model
     use HasFactory;
 
 
-
     protected $table = 'product_vendor';
     protected $primaryKey = 'product_vendor_id';
 
@@ -22,5 +21,11 @@ class ProductVendor extends Model
         'min_order_quantity',
     ];
 
-    
+
+    public function product(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+
+        return $this->belongsTo(Product::class, 'product_id', 'product_id');
+    }
+
 }
