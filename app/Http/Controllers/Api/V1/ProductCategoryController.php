@@ -12,11 +12,14 @@ class ProductCategoryController extends Controller
     //
 
 
-    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
 
 
+        $query = $request->get('query');
+
         $categories = ProductCategory::orderBy('createdAt', 'desc')
+            ->where('name', 'like', '%' . $query . '%')
             ->paginate(15);
         return ProductCategoryResource::collection($categories);
 
@@ -34,7 +37,7 @@ class ProductCategoryController extends Controller
 
     }
 
-    public function update(Request $request, $id): ProductCategory
+    public function update(Request $request, $id): ProductCategoryResource
     {
         $category = ProductCategory::findOrFail($id);
         $category->name = $request->get('name');
