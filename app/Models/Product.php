@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -56,5 +57,17 @@ class Product extends Model
             'product_id',
             'product_id');
 
+    }
+
+    public function currentPrice(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+
+        return $this->hasOne(ProductListPriceHistory::class,
+            'product_id',
+            'product_id')
+            ->whereDate('end_date', '>=', Carbon::now())
+            ->orWhereNull('end_date')
+            ->orderBy('product_list_price_id', 'desc')
+            ->limit(1);
     }
 }
