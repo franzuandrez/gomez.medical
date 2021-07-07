@@ -38,3 +38,4 @@ Route::apiResource('v1/categories', \App\Http\Controllers\Api\V1\ProductCategory
 Route::apiResource('v1/subcategories', \App\Http\Controllers\Api\V1\ProductSubCategoryController::class);
 Route::post('v1/business_entity_addresses', [\App\Http\Controllers\Api\V1\BusinessEntityAddressController::class, 'store']);
 
+Route::apiResource('v1/products', \App\Http\Controllers\Api\V1\ProductController::class);
