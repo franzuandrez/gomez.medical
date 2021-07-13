@@ -65,8 +65,10 @@ class Product extends Model
         return $this->hasOne(ProductListPriceHistory::class,
             'product_id',
             'product_id')
-            ->whereDate('end_date', '>=', Carbon::now())
-            ->orWhereNull('end_date')
+            ->where(function ($query) {
+                $query->orWhereDate('end_date', '>=', Carbon::now())
+                    ->orWhereNull('end_date');
+            })
             ->orderBy('product_list_price_id', 'desc')
             ->limit(1);
     }
