@@ -12,10 +12,14 @@ class ProductSubCategoryController extends Controller
     //
 
 
-    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
 
-        $subcategories = ProductSubcategory::orderBy('updatedAt', 'desc')
+
+        $query = $request->get('query');
+
+        $subcategories = ProductSubcategory::where('name', 'LIKE', '%' . $query . '%')
+            ->orderBy('updatedAt', 'desc')
             ->paginate(15);
 
 
