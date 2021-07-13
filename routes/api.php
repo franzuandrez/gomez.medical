@@ -35,6 +35,7 @@ Route::apiResource('v1/bins', \App\Http\Controllers\Api\V1\BinController::class)
 Route::apiResource('v1/vendors', \App\Http\Controllers\Api\V1\VendorController::class);
 Route::apiResource('v1/addresses_type', \App\Http\Controllers\Api\V1\AddressTypeController::class);
 Route::apiResource('v1/categories', \App\Http\Controllers\Api\V1\ProductCategoryController::class);
+Route::get('v1/categories/{id}/subcategories', [\App\Http\Controllers\Api\V1\CategorySubcategoriesController::class, 'index']);
 Route::apiResource('v1/subcategories', \App\Http\Controllers\Api\V1\ProductSubCategoryController::class);
 Route::post('v1/business_entity_addresses', [\App\Http\Controllers\Api\V1\BusinessEntityAddressController::class, 'store']);
 
