@@ -36,13 +36,12 @@ class ProductAddImagesService implements ServiceInterface
 
     public function execute(): array
     {
-        // TODO: Implement execute() method.
+
 
         $images_saved = collect([]);
-
+        $this->delete_previous_images();
         foreach ($this->dto->getImages() as $imageKey => $image) {
             $content = file_get_contents($image);
-
             $image_extension = $image->clientExtension();
             $name_without_spaces = preg_replace('/\s+/', '-', $this->dto->getProductName());
             $name = $name_without_spaces . '-' . Carbon::now()->unix() . '.' . $image_extension;
@@ -57,6 +56,21 @@ class ProductAddImagesService implements ServiceInterface
         }
 
         return $images_saved->toArray();
+
+    }
+
+    private function delete_previous_images()
+    {
+        $images = ProductPhoto::where('product_id', $this->dto->getProductId())
+            ->get();
+
+
+        Storage::disk('s3')
+            ->delete(
+                $images->map(function ($item) {
+                    return 'products/' . $item->path;
+                })->toArray()
+            );
 
     }
 }
