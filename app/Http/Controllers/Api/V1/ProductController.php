@@ -6,16 +6,18 @@ namespace App\Http\Controllers\api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\ProductResource;
 use App\Models\Product;
-use App\Services\v1\DTOs\Product\ProductAddImagesDto;
-use App\Services\v1\DTOs\Product\ProductCreateDto;
-use App\Services\v1\DTOs\Product\ProductNewPriceListDto;
+use App\DTOs\v1\Product\ProductAddImagesDto;
+use App\DTOs\v1\Product\ProductCreateDto;
+use App\DTOs\v1\Product\ProductEditDto;
+use App\DTOs\v1\Product\ProductNewPriceListDto;
 use App\Services\v1\Product\ProductAddImagesService;
 use App\Services\v1\Product\ProductCreateService;
+use App\Services\v1\Product\ProductEditService;
 use App\Services\v1\Product\ProductNewPriceListService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
+
 
 class ProductController extends Controller
 {
@@ -28,10 +30,11 @@ class ProductController extends Controller
     {
         //
 
+        $perPage = $request->get('perPage') ?? 15;
         $query = $request->get('query');
         $products = Product::where('name', 'LIKE', '%' . $query . '%')
             ->orderBy('createdAt', 'desc')
-            ->paginate(15);
+            ->paginate($perPage);
 
         return ProductResource::collection($products);
 
@@ -82,12 +85,15 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return Response
+     * @param $id
+     * @return ProductResource
      */
-    public function show($id)
+    public function show($id): ProductResource
     {
         //
+        $product = Product::find($id);
+        return new ProductResource($product);
+
     }
 
     /**
@@ -100,6 +106,32 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+
+        $values = $request->all();
+
+        $values['product_id'] = $id;
+        $dto_product = new ProductEditDto(
+            $values
+        );
+
+
+        $product_service = ProductEditService::make($dto_product);
+        $product = $product_service->execute();
+
+        $dto_price_list = new ProductNewPriceListDto(
+            [
+                'list_price' => $request->get('price'),
+                'product_id' => $product['product_id']
+            ]
+        );
+
+        $product_price_list_service = ProductNewPriceListService::make($dto_price_list);
+        $product_price_list_service->execute();
+
+
+        return ($product);
+
     }
 
     /**
