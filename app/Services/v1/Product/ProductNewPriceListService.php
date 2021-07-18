@@ -5,8 +5,8 @@ namespace App\Services\v1\Product;
 
 
 use App\Models\ProductListPriceHistory;
-use App\Services\v1\DTOs\BaseAbstractDto;
-use App\Services\v1\DTOs\Product\ProductNewPriceListDto;
+use App\DTOs\v1\BaseAbstractDto;
+use App\DTOs\v1\Product\ProductNewPriceListDto;
 use App\Services\v1\ServiceInterface;
 use Carbon\Carbon;
 

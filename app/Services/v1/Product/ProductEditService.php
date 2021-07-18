@@ -5,8 +5,8 @@ namespace App\Services\v1\Product;
 
 
 use App\Models\Product;
-use App\Services\v1\DTOs\BaseAbstractDto;
-use App\Services\v1\DTOs\Product\ProductEditDto;
+use App\DTOs\v1\BaseAbstractDto;
+use App\DTOs\v1\Product\ProductEditDto;
 use App\Services\v1\ServiceInterface;
 
 class ProductEditService implements ServiceInterface

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services\v1\DTOs;
+namespace App\DTOs\v1;
 
 
 use InvalidArgumentException;

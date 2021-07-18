@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\PositionBinsResource;
 use App\Models\Bin;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PositionBinsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return AnonymousResourceCollection
      */
     public function index($position_id)
     {

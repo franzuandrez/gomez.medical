@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Services\v1\DTOs\Product;
+namespace App\DTOs\v1\Product;
 
 
-use App\Services\v1\DTOs\BaseAbstractDto;
+use App\DTOs\v1\BaseAbstractDto;
 
 class ProductNewPriceListDto extends BaseAbstractDto
 {

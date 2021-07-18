@@ -4,7 +4,7 @@
 namespace App\Services\v1;
 
 
-use App\Services\v1\DTOs\BaseAbstractDto;
+use App\DTOs\v1\BaseAbstractDto;
 
 Interface ServiceInterface
 {
