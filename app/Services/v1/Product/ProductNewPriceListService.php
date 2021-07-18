@@ -9,6 +9,7 @@ use App\DTOs\v1\BaseAbstractDto;
 use App\DTOs\v1\Product\ProductNewPriceListDto;
 use App\Services\v1\ServiceInterface;
 use Carbon\Carbon;
+use http\Exception\InvalidArgumentException;
 
 class ProductNewPriceListService implements ServiceInterface
 {
