@@ -42,6 +42,7 @@ Route::get('v1/products', [\App\Http\Controllers\Api\V1\ProductController::class
 Route::post('v1/products', [\App\Http\Controllers\Api\V1\ProductController::class, 'store']);
 Route::get('v1/products/{id}', [\App\Http\Controllers\Api\V1\ProductController::class, 'show']);
 Route::patch('v1/products/{id}', [\App\Http\Controllers\Api\V1\ProductController::class, 'update']);
+Route::post('v1/vendor/{vendor_id}/products/{product_id}', [\App\Http\Controllers\Api\V1\VendorProductsController::class, 'store']);
 Route::patch('v1/vendor/{vendor_id}/products/{product_id}', [\App\Http\Controllers\Api\V1\VendorProductsController::class, 'update']);
 
 
