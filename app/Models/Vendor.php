@@ -39,7 +39,7 @@ class Vendor extends Model
         $this->preferred_vendor_status = 1;
         $this->active_flag = Self::ACTIVE;
 
-        return parent::save($options); 
+        return parent::save($options);
     }
 
     public function delete(): ?bool
