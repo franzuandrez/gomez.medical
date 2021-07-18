@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\DTOs\v1\BaseAbstractDto;
 use App\DTOs\v1\Product\ProductEditDto;
 use App\Services\v1\ServiceInterface;
+use http\Exception\InvalidArgumentException;
 
 class ProductEditService implements ServiceInterface
 {

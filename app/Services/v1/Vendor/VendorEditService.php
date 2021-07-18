@@ -8,6 +8,7 @@ use App\Models\Vendor;
 use App\DTOs\v1\BaseAbstractDto;
 use App\DTOs\v1\Vendor\VendorEditDto;
 use App\Services\v1\ServiceInterface;
+use http\Exception\InvalidArgumentException;
 
 class VendorEditService implements ServiceInterface
 {

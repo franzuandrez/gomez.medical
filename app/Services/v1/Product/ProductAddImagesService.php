@@ -5,11 +5,12 @@ namespace App\Services\v1\Product;
 
 
 use App\Models\ProductPhoto;
-use App\Services\v1\DTOs\BaseAbstractDto;
-use App\Services\v1\DTOs\Product\ProductAddImagesDto;
+use App\DTOs\v1\BaseAbstractDto;
+use App\DTOs\v1\Product\ProductAddImagesDto;
 use App\Services\v1\ServiceInterface;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use http\Exception\InvalidArgumentException;
 
 class ProductAddImagesService implements ServiceInterface
 {
