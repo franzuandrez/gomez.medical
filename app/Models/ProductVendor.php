@@ -13,6 +13,9 @@ class ProductVendor extends Model
     protected $table = 'product_vendor';
     protected $primaryKey = 'product_vendor_id';
 
+    public const CREATED_AT = 'createdAt';
+    public const UPDATED_AT = 'updatedAt';
+
     protected $fillable = [
         'average_lead_time',
         'standard_price',
