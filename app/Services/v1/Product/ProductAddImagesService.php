@@ -10,7 +10,8 @@ use App\DTOs\v1\Product\ProductAddImagesDto;
 use App\Services\v1\ServiceInterface;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
-use http\Exception\InvalidArgumentException;
+use InvalidArgumentException;
+
 
 class ProductAddImagesService implements ServiceInterface
 {

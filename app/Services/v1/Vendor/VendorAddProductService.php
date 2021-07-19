@@ -7,8 +7,10 @@ namespace App\Services\v1\Vendor;
 use App\DTOs\v1\BaseAbstractDto;
 use App\DTOs\v1\Vendor\VendorAddProductDto;
 use App\Exceptions\VendorAddProductException;
+use App\Models\ProductVendor;
 use App\Services\v1\ServiceInterface;
-use http\Exception\InvalidArgumentException;
+use InvalidArgumentException;
+
 
 class VendorAddProductService implements ServiceInterface
 {
@@ -37,17 +39,17 @@ class VendorAddProductService implements ServiceInterface
         $product = ProductVendor::where('vendor_id', $this->dto->getVendorId())
             ->where('product_id', $this->dto->getProductId())
             ->first();
-        $is_added = !isset($product);
+        $is_added = !is_null($product);
         if ($is_added) {
             throw new VendorAddProductException(
-                'VendorEditService needs to receive a VendorEditDto.'
+                'Product Already added'
             );
 
         }
         $new_product = new ProductVendor();
         $new_product->vendor_id = $this->dto->getVendorId();
         $new_product->product_id = $this->dto->getProductId();
-        $new_product->cost = $this->dto->getCost();
+        $new_product->standard_price = $this->dto->getCost();
         $new_product->save();
 
     }

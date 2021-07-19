@@ -8,7 +8,8 @@ use App\Models\Product;
 use  App\DTOs\v1\BaseAbstractDto;
 use App\DTOs\v1\Product\ProductCreateDto;
 use App\Services\v1\ServiceInterface;
-use http\Exception\InvalidArgumentException;
+use InvalidArgumentException;
+
 
 class ProductCreateService implements ServiceInterface
 {
