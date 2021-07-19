@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Customer extends Model
 {
@@ -13,7 +15,7 @@ class Customer extends Model
     protected $primaryKey = 'customer_id';
 
     protected $fillable = [
-        'number_account'
+        'nit'
     ];
 
 
@@ -21,7 +23,7 @@ class Customer extends Model
     public const UPDATED_AT = 'updatedAt';
 
 
-    public function businessEntity(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function businessEntity(): BelongsTo
     {
 
 
@@ -34,7 +36,7 @@ class Customer extends Model
     }
 
 
-    public function salesOrderHeader(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function salesOrderHeader(): HasMany
     {
         return $this->hasMany(SalesOrderHeader::class, 'customer_id', 'customer_id');
     }
