@@ -25,7 +25,7 @@ class Person extends Model
     public const CREATED_AT = 'createdAt';
     public const UPDATED_AT = 'updatedAt';
 
-    public function businesEntity(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function businessEntity(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
 
         return $this->belongsTo(BusinessEntity::class, 'business_entity_id', 'business_entity_id');

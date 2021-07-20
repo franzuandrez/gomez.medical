@@ -46,6 +46,9 @@ Route::get('v1/vendors/{vendor_id}/products', [\App\Http\Controllers\Api\V1\Vend
 Route::post('v1/vendors/{vendor_id}/products/{product_id}', [\App\Http\Controllers\Api\V1\VendorProductsController::class, 'store']);
 Route::patch('v1/vendors/{vendor_id}/products/{product_id}', [\App\Http\Controllers\Api\V1\VendorProductsController::class, 'update']);
 Route::delete('v1/vendors/{vendor_id}/products/{product_id}', [\App\Http\Controllers\Api\V1\VendorProductsController::class, 'destroy']);
+Route::get('v1/customers', [\App\Http\Controllers\Api\V1\CustomerController::class, 'index']);
+Route::post('v1/customers', [\App\Http\Controllers\Api\V1\CustomerController::class, 'store']);
+Route::get('v1/customers/{id}', [\App\Http\Controllers\Api\V1\CustomerController::class, 'show']);
 
 
 

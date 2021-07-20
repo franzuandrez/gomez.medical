@@ -36,6 +36,8 @@ class Customer extends Model
     }
 
 
+
+
     public function salesOrderHeader(): HasMany
     {
         return $this->hasMany(SalesOrderHeader::class, 'customer_id', 'customer_id');
