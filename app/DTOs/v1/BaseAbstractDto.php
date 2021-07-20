@@ -6,6 +6,7 @@ namespace App\DTOs\v1;
 
 use InvalidArgumentException;
 use Illuminate\Support\Facades\Validator;
+
 abstract class BaseAbstractDto
 {
     public function __construct(array $data)
@@ -16,7 +17,7 @@ abstract class BaseAbstractDto
             $this->configureValidatorRules()
         );
 
-        if (!$validator->validate()) {
+        if (!$validator->validate() & count($this->configureValidatorRules()) > 0) {
 
             throw new InvalidArgumentException(
                 'Error: ' . $validator->errors()->first()
