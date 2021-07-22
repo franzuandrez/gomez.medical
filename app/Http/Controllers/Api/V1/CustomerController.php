@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\api\v1;
 
-use App\DTOs\v1\BusinesEntity\BusinessEntityCreateDto;
+use App\DTOs\v1\BusinessEntity\BusinessEntityCreateDto;
 use App\DTOs\v1\Customer\CustomerCreateDto;
 use App\DTOs\v1\Person\PersonCreateDto;
 use App\Http\Controllers\Controller;
@@ -23,8 +23,12 @@ class CustomerController extends Controller
 
 
         $query = $request->get('query');
+        $sortField = $request->get('sortField') == null ? 'customer.updatedAt' : $request->get('sortField');
+        $sortDirection = $request->get('sortDirection') == null ? 'desc' : $request->get('sortDirection');
+
         $customers = Customer::where('nit', 'like', '%' . $query . '%')
             ->join('person', 'person.person_id', '=', 'customer.person_id')
+            ->orderBy($sortField, $sortDirection)
             ->paginate(10);
 
 
@@ -69,7 +73,7 @@ class CustomerController extends Controller
             [
                 'person_id' => $person['person_id'],
                 'nit' => $request->get('nit'),
-                'business_entity_id' =>  $businessEntity['business_entity_id']
+                'business_entity_id' => $businessEntity['business_entity_id']
             ]
         );
         $customerService = CustomerCreateService::make($customerDto);
