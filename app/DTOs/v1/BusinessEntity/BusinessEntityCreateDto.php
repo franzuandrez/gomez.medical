@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\DTOs\v1\BusinesEntity;
+namespace App\DTOs\v1\BusinessEntity;
 
 
 use App\DTOs\v1\BaseAbstractDto;
