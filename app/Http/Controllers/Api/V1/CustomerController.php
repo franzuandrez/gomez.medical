@@ -77,7 +77,9 @@ class CustomerController extends Controller
             ]
         );
         $customerService = CustomerCreateService::make($customerDto);
-        return $customerService->execute();
+        $customer = $customerService->execute();
+
+        return new CustomerResource(Customer::find($customer['customer_id']));
 
 
     }
