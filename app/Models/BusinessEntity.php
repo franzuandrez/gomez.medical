@@ -60,4 +60,12 @@ class BusinessEntity extends Model
         return $this->hasOne(Customer::class, 'business_entity_id', 'business_entity_id');
 
     }
+
+    public function phones(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PersonPhone::class,
+            'business_entity_id',
+            'business_entity_id'
+        );
+    }
 }
