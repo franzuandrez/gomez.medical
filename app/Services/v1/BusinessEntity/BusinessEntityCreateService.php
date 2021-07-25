@@ -5,7 +5,7 @@ namespace App\Services\v1\BusinessEntity;
 
 
 use App\DTOs\v1\BaseAbstractDto;
-use App\DTOs\v1\BusinesEntity\BusinessEntityCreateDto;
+use App\DTOs\v1\BusinessEntity\BusinessEntityCreateDto;
 use App\Models\BusinessEntity;
 use App\Services\v1\ServiceInterface;
 use InvalidArgumentException;
