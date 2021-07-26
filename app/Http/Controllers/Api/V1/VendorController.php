@@ -16,10 +16,15 @@ class VendorController extends Controller
     //
 
 
-    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
 
-        $vendors = Vendor::orderBy('updatedAt', 'desc')->paginate(15);
+        $query = $request->get('query') === null ? '' : $request->get('query');
+
+        $vendors = Vendor::where('name', 'like', '%' . $query . '%')
+            ->orderBy('updatedAt', 'desc')
+            ->paginate(15);
+
 
         return VendorResource::collection($vendors);
 
