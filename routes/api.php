@@ -51,6 +51,7 @@ Route::post('v1/customers', [\App\Http\Controllers\Api\V1\CustomerController::cl
 Route::get('v1/customers/{id}', [\App\Http\Controllers\Api\V1\CustomerController::class, 'show']);
 Route::get('v1/phone_number_types', [\App\Http\Controllers\Api\V1\PhoneNumberTypeController::class, 'index']);
 Route::post('v1/phone_number', [\App\Http\Controllers\Api\V1\PhoneNumberController::class, 'store']);
+Route::apiResource('v1/ship_methods', \App\Http\Controllers\Api\V1\ShipMethodController::class);
 
 
 
