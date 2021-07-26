@@ -22,7 +22,14 @@ class VendorProductsController extends Controller
     public function index(Request $request, $vendor_id)
     {
 
-        $products = ProductVendor::where('vendor_id', $vendor_id)
+        $query = $request->get('query') === null ? '' : $request->get('query');
+        $products = ProductVendor::select('product_vendor.*')
+            ->where('vendor_id', $vendor_id)
+            ->where(function ($qry) use ($query) {
+                return $qry->orWhere('product.name', 'like', '%' . $query . '%')
+                    ->orWhere('product.sku', 'like', '%' . $query . '%');
+            })
+            ->join('product', 'product.product_id', '=', 'product_vendor.product_id')
             ->get();
 
 
