@@ -14,7 +14,7 @@ class PurchasingHeaderReceiveDto extends BaseAbstractDto
     private $ship_method_id;
     private $subtotal;
     private $freight;
-    private $total_due;
+
 
     /**
      * @return mixed
@@ -48,13 +48,6 @@ class PurchasingHeaderReceiveDto extends BaseAbstractDto
         return $this->freight;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getTotalDue()
-    {
-        return $this->total_due;
-    }
 
 
 
@@ -64,9 +57,8 @@ class PurchasingHeaderReceiveDto extends BaseAbstractDto
 
         return [
             'ship_method_id' => 'required',
-            'subtotal' => 'required',
+            'subTotal' => 'required',
             'freight' => 'required',
-            'total_due' => 'required',
             'purchase_order_id' => 'required',
         ];
     }
@@ -76,9 +68,8 @@ class PurchasingHeaderReceiveDto extends BaseAbstractDto
 
 
         $this->ship_method_id = $data['ship_method_id'];
-        $this->subtotal = $data['subtotal'];
+        $this->subtotal = $data['subTotal'];
         $this->freight = $data['freight'];
-        $this->total_due = $data['total_due'];
         $this->purchase_order_id = $data['purchase_order_id'];
 
         return true;

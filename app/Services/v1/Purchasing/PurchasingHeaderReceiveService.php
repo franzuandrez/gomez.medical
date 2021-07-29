@@ -43,8 +43,10 @@ class PurchasingHeaderReceiveService implements ServiceInterface
         $header->ship_method_id = $this->dto->getShipMethodId();
         $header->subtotal = $this->dto->getSubtotal();
         $header->freight = $this->dto->getFreight();
-        $header->total_due = $this->dto->getTotalDue();
-        $header->status = 2;//RECEPCIONADA
+        $header->total_due = $header->freight + $header->subtotal;
+        $header->markAsReceived();
         $header->update();
+
+        return $header->toArray();
     }
 }

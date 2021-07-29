@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\DTOs\v1\Purchasing\PurchasingDetailCreateDto;
+use App\DTOs\v1\Purchasing\PurchasingDetailReceiveDto;
 use App\DTOs\v1\Purchasing\PurchasingHeaderCreateDto;
+use App\DTOs\v1\Purchasing\PurchasingHeaderReceiveDto;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\PurchaseCollectionResource;
 use App\Http\Resources\V1\PurchaseResource;
 use App\Models\PurchaseOrderHeader;
 use App\Services\v1\Purchasing\PurchasingDetailCreateService;
+use App\Services\v1\Purchasing\PurchasingDetailReceiveService;
 use App\Services\v1\Purchasing\PurchasingHeaderCreateService;
+use App\Services\v1\Purchasing\PurchasingHeaderReceiveService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
@@ -92,12 +96,28 @@ class PurchaseController extends Controller
      *
      * @param Request $request
      * @param int $id
-     * @return Response
+     * @return PurchaseResource
      */
     public function update(Request $request, $id)
     {
         //
 
+        $values = $request->all();
+        $values['purchase_order_id'] = $id;
+        $dtoHeader = new PurchasingHeaderReceiveDto(
+            $values
+        );
+
+        $serviceHeader = PurchasingHeaderReceiveService::make($dtoHeader);
+        $serviceHeader->execute();
+
+        $dtoDetail = new PurchasingDetailReceiveDto(
+            ['products' => $request->get('products')]
+        );
+        $serviceDetail = PurchasingDetailReceiveService::make($dtoDetail);
+        $serviceDetail->execute();
+
+        return new PurchaseResource(PurchaseOrderHeader::find($id));
 
     }
 
