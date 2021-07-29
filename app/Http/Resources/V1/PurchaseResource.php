@@ -20,6 +20,7 @@ class PurchaseResource extends JsonResource
     {
         return [
             'purchase_order_id' => $this->purchase_order_id,
+            'status' => $this->getStatusName($this->status) ,
             'order_date' => $this->order_date,
             'subtotal' => $this->subtotal,
             'tax_amount' => $this->tax_amount,
@@ -28,7 +29,33 @@ class PurchaseResource extends JsonResource
             'employee' => $this->employee,
             'vendor' => $this->vendor,
             'ship_method' => $this->shipMethod,
-            'detail' => $this->purchaseOrderDetail,
+            'detail' =>PurchaseDetailResource::collection($this->purchaseOrderDetail),
         ];
+    }
+
+    private function getStatusName($status): string
+    {
+
+
+        switch ($status) {
+            case 1:
+                $name = "pendiente";
+                break;
+            case 2:
+                $name = "recepcionada";
+                break;
+            case 3:
+                $name = "rechazada";
+                break;
+            case 4:
+                $name = "completada";
+                break;
+            default:
+                $name = "";
+
+        }
+
+        return $name;
+
     }
 }

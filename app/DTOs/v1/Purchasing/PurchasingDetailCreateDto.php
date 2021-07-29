@@ -38,6 +38,7 @@ class PurchasingDetailCreateDto extends BaseAbstractDto
         return [
             'purchase_order_id' => 'required',
             'products.*.quantity' => 'required',
+            'products.*.cost' => 'required',
             'products.*.id' => 'required',
         ];
     }

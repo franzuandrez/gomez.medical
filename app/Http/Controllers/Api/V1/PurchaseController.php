@@ -64,6 +64,7 @@ class PurchaseController extends Controller
             [
                 'products' => $request->get('products'),
                 'purchase_order_id' => $header['purchase_order_id']
+
             ]
         );
         $detailService = PurchasingDetailCreateService::make($detailDto);
@@ -78,11 +79,12 @@ class PurchaseController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return Response
+     * @return PurchaseResource
      */
-    public function show($id)
+    public function show(int $id)
     {
-        //
+
+        return new PurchaseResource(PurchaseOrderHeader::find($id));
     }
 
     /**
@@ -95,6 +97,8 @@ class PurchaseController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+
     }
 
     /**

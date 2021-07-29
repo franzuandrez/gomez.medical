@@ -39,7 +39,6 @@ class PurchasingHeaderCreateService implements ServiceInterface
     {
 
         $purchase = new PurchaseOrderHeader();
-        $purchase->status = 1;
         $purchase->employee_id = $this->dto->getEmployeeId();
         $purchase->vendor_id = $this->dto->getVendorId();
         $purchase->ship_method_id = null;
@@ -48,6 +47,7 @@ class PurchasingHeaderCreateService implements ServiceInterface
         $purchase->tax_amount = 0;
         $purchase->freight = 0;
         $purchase->total_due = 0;
+        $purchase->markAsPending();
         $purchase->save();
 
 

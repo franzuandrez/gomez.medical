@@ -11,7 +11,10 @@ class PurchaseOrderHeader extends Model
 
     protected $table = 'purchase_order_header';
     protected $primaryKey = 'purchase_order_id';
-
+    const STATUS_PENDING = 1;
+    const STATUS_RECEIVED = 2;
+    const STATUS_REJECTED = 3;
+    const STATUS_COMPLETED = 4;
 
     protected $fillable = [
         'status',
@@ -24,6 +27,30 @@ class PurchaseOrderHeader extends Model
     public const CREATED_AT = 'createdAt';
     public const UPDATED_AT = 'updatedAt';
 
+
+    public function markAsPending()
+    {
+        $this->status = self::STATUS_PENDING;
+        $this->save();
+    }
+
+    public function markAsReceived()
+    {
+        $this->status = self::STATUS_RECEIVED;
+        $this->save();
+    }
+
+    public function markAsRejected()
+    {
+        $this->status = self::STATUS_REJECTED;
+        $this->save();
+    }
+
+    public function markAsCompleted()
+    {
+        $this->status = self::STATUS_COMPLETED;
+        $this->save();
+    }
 
     public function employee(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

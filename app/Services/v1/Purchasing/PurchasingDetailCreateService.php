@@ -46,6 +46,11 @@ class PurchasingDetailCreateService implements ServiceInterface
             $detail->product_id = $productDB->product_id;
             $detail->purchase_order_id = $this->dto->getPurchaseOrderId();
             $detail->order_quantity = $product['quantity'];
+            $detail->received_quantity = 0;
+            $detail->unit_price = $product['cost'];
+            $detail->line_total = 0;
+            $detail->rejected_quantity = 0;
+            $detail->stocked_quantity = 0;
             $detail->save();
             $order_detail->push($detail);
         }
