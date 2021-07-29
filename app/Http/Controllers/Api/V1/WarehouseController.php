@@ -9,7 +9,7 @@ use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\v1\WarehouseResource;
+use App\Http\Resources\V1\WarehouseResource;
 
 class WarehouseController extends Controller
 {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api\v1;
 
 use App\DTOs\v1\Person\PersonPhoneCreateDto;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\PhoneNumberResource;
+use App\Http\Resources\V1\PhoneNumberResource;
 use App\Models\PersonPhone;
 use App\Services\v1\Person\PersonPhoneCreateService;
 use Illuminate\Http\Request;

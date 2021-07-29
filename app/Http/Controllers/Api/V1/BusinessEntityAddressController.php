@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\BusinessEntityAddressResource;
-use App\Http\Resources\v1\BusinessEntityResource;
+use App\Http\Resources\V1\BusinessEntityAddressResource;
+use App\Http\Resources\V1\BusinessEntityResource;
 use App\Models\Address;
 use App\Models\BusinessEntityAddress;
 use Illuminate\Http\Request;

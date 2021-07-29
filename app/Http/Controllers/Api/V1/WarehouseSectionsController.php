@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\SectionLocationResource;
-use App\Http\Resources\v1\WarehouseSectionsResource;
+use App\Http\Resources\V1\SectionLocationResource;
+use App\Http\Resources\V1\WarehouseSectionsResource;
 use App\Models\SectionLocation;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
