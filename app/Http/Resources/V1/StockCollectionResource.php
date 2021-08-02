@@ -26,8 +26,9 @@ class StockCollectionResource extends JsonResource
             'color' => $this->color,
             'size' => $this->size,
             'subcategory' => $this->subcategory,
-            'stock' => $this->stock,
-            'images' => $this->product->photos
+            'stock' => floatval($this->stock),
+            'images' => $this->product->photos,
+            'price' => new ProductPriceResource($this->product->currentPrice)
         ];
 
     }
