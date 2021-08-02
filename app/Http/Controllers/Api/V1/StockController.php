@@ -49,7 +49,7 @@ class StockController extends Controller
             ->groupBy('inventory.product_id')
             ->groupBy('inventory.batch')
             ->groupBy('bin.bin_id')
-            ->paginate(10);
+            ->paginate(5);
 
 
         return StockCollectionResource::collection($stocks);
