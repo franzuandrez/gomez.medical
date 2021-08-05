@@ -32,7 +32,11 @@ class ProductController extends Controller
 
         $perPage = $request->get('perPage') ?? 15;
         $query = $request->get('query');
-        $products = Product::where('name', 'LIKE', '%' . $query . '%')
+
+        $products = Product::
+        orWhere('name', 'LIKE', '%' . $query . '%')
+            ->orWhere('sku', '=', $query)
+            ->orWhere('code', '=', $query)
             ->orderBy('createdAt', 'desc')
             ->paginate($perPage);
 
