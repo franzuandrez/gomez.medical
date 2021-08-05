@@ -5,6 +5,8 @@ namespace App\Http\Controllers\api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\RackResource;
 use App\Models\Rack;
+use App\Models\RackLevel;
+use App\Models\Position;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
@@ -27,7 +29,7 @@ class RackController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return Response
+     * @return RackResource
      */
     public function store(Request $request)
     {
@@ -36,6 +38,23 @@ class RackController extends Controller
         $rack->name = $request->get('name');
         $rack->corridor_id = $request->get('corridor_id');
         $rack->save();
+
+        $levels_count = $request->get('levels_count');
+        $positions_count = $request->get('positions_count');
+        $level_available = range('A', 'Z');
+        for ($i = 0; $i < $levels_count; $i++) {
+            $level = new RackLevel();
+            $level->name = $level_available[$i];
+            $level->rack_id = $rack->rack_id;
+            $level->save();
+            for ($j = 0; $j < $positions_count; $j++) {
+                $position = new Position();
+                $position->name = $j + 1;
+                $position->level_id = $level->level_id;
+                $position->save();
+            }
+        }
+
 
         return new RackResource($rack);
     }
