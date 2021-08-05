@@ -14,12 +14,24 @@ class BinController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return AnonymousResourceCollection
      */
-    public function index(): AnonymousResourceCollection
+    public function index(Request $request): AnonymousResourceCollection
     {
         //
-        return BinResource::collection(Bin::orderby('updatedAt', 'desc')->paginate(15));
+        $perPage = $request->get('per_page') === null ? 5 : $request->get('per_page');
+        $query = $request->get('query') === null ? '' : $request->get('query');
+
+
+        $bins = Bin::orderby('updatedAt', 'desc');
+        if ($query) {
+            $bins = $bins->where('name', $query);
+        }
+        $bins = $bins->paginate($perPage);
+
+
+        return BinResource::collection($bins);
     }
 
     /**
