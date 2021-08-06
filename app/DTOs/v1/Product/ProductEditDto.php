@@ -39,6 +39,7 @@ class ProductEditDto extends BaseAbstractDto
     protected function map(array $data): bool
     {
         $this->sku = $data['sku'];
+        $this->code = $data['code'];
         $this->product_id = $data['product_id'];
         $this->name = $data['name'];
         $this->description = $data['description'];

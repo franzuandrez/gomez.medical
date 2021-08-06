@@ -37,6 +37,7 @@ class ProductCreateDto extends BaseAbstractDto
 
     protected function map(array $data): bool
     {
+        $this->code = $data['code'];
         $this->sku = $data['sku'];
         $this->name = $data['name'];
         $this->description = $data['description'];
