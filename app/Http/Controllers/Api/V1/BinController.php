@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\BinResource;
 use App\Models\Bin;
+use App\Models\Position;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
@@ -43,10 +44,20 @@ class BinController extends Controller
     public function store(Request $request): BinResource
     {
         //
+
+        $position = Position::find($request->get('position_id'));
+        $bins = Bin::where('position_id', $position->position_id)->count() + 1;
+
+        $name = $position->level->rack->corridor->name .
+            $position->level->rack->name .
+            $position->level->name .
+            $position->name .
+            '-' . $bins;
         $bin = new Bin();
         $bin->position_id = $request->get('position_id');
-        $bin->name = $request->get('name');
+        $bin->name = $name;
         $bin->save();
+
 
         return new BinResource($bin);
     }
