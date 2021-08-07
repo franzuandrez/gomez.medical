@@ -58,7 +58,7 @@ class PurchaseController extends Controller
         $headerDto = new  PurchasingHeaderCreateDto(
             [
                 'vendor_id' => $request->get('vendor')['vendor_id'],
-                'employee_id' => '3051',
+                'employee_id' => '3101',
             ]
         );
         $headerService = PurchasingHeaderCreateService::make($headerDto);
