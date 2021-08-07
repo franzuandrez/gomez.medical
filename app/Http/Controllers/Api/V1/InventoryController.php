@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api\v1;
 
 use App\DTOs\v1\Inventory\InventoryAddDto;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\InventoryResource;
+use App\Http\Resources\V1\InventoryResource;
 use App\Models\InventoryMovement;
 use App\Services\v1\Inventory\InventoryAddService;
 use Illuminate\Http\Request;
