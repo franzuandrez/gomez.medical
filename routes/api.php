@@ -55,6 +55,7 @@ Route::apiResource('v1/ship_methods', \App\Http\Controllers\Api\V1\ShipMethodCon
 Route::apiResource('v1/purchases', \App\Http\Controllers\Api\V1\PurchaseController::class);
 Route::get('v1/stocks', [\App\Http\Controllers\Api\V1\StockController::class, 'index']);
 Route::post('v1/inventory', [\App\Http\Controllers\Api\V1\InventoryController::class, 'store']);
+Route::get('v1/sales', [\App\Http\Controllers\Api\V1\SalesController::class, 'index']);
 
 
 
