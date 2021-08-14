@@ -13,6 +13,15 @@ class CustomerCreateDto extends BaseAbstractDto
     private $nit;
     private $business_entity_id;
     private $person_id;
+    private $business_name;
+
+    /**
+     * @return mixed
+     */
+    public function getBusinessName()
+    {
+        return $this->business_name;
+    }
 
     /**
      * @return mixed
@@ -44,7 +53,7 @@ class CustomerCreateDto extends BaseAbstractDto
         return [
             'nit' => 'required',
             'business_entity_id' => 'required',
-            'person_id' => 'required',
+
         ];
 
     }
@@ -53,6 +62,7 @@ class CustomerCreateDto extends BaseAbstractDto
     {
         $this->nit = $data['nit'];
         $this->business_entity_id = $data['business_entity_id'];
+        $this->business_name = $data['business_name'];
         $this->person_id = $data['person_id'];
 
         return true;

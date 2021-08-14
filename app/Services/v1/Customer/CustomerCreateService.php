@@ -41,6 +41,7 @@ class CustomerCreateService implements ServiceInterface
         $customer->person_id = $this->dto->getPersonId();
         $customer->business_entity_id = $this->dto->getBusinessEntityId();
         $customer->nit = $this->dto->getNit();
+        $customer->business_name = $this->dto->getBusinessName();
         $customer->save();
 
         return $customer->toArray();

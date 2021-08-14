@@ -26,8 +26,18 @@ class CustomerController extends Controller
         $sortField = $request->get('sortField') == null ? 'customer.updatedAt' : $request->get('sortField');
         $sortDirection = $request->get('sortDirection') == null ? 'desc' : $request->get('sortDirection');
 
-        $customers = Customer::where('nit', 'like', '%' . $query . '%')
-            ->join('person', 'person.person_id', '=', 'customer.person_id')
+        $customers = Customer::select(
+            'customer.*',
+            'person.person_id',
+            'person.person_type',
+            'person.title',
+            'person.first_name',
+            'person.middle_name',
+            'person.last_name',
+        )
+            ->where('nit', 'like', '%' . $query . '%')
+            ->orWhere('business_name', 'like', "%$query%")
+            ->leftjoin('person', 'person.person_id', '=', 'customer.person_id')
             ->orderBy($sortField, $sortDirection)
             ->paginate(10);
 
@@ -41,8 +51,18 @@ class CustomerController extends Controller
     public function show($customer_id)
     {
 
-        $customer = Customer::where('customer_id', $customer_id)
-            ->join('person', 'person.person_id', '=', 'customer.person_id')
+        $customer = Customer::
+        select(
+            'customer.*',
+            'person.person_id',
+            'person.person_type',
+            'person.title',
+            'person.first_name',
+            'person.middle_name',
+            'person.last_name',
+        )
+            ->where('customer_id', $customer_id)
+            ->leftJoin('person', 'person.person_id', '=', 'customer.person_id')
             ->first();
 
 
@@ -59,21 +79,23 @@ class CustomerController extends Controller
         $businessEntityService = BusinessEntityCreateService::make($businessEntityDto);
         $businessEntity = $businessEntityService->execute();
 
-
-        $personValues = $request->all();
-        $personValues['business_entity_id'] = $businessEntity['business_entity_id'];
-        $personValues['person_type'] = 'IN';
-
-        $personCreateDto = new PersonCreateDto($personValues);
-        $personCreatService = PersonCreateService::make($personCreateDto);
-        $person = $personCreatService->execute();
+        $person = null;
+        if ($request->get('first_name')) {
+            $personValues = $request->all();
+            $personValues['business_entity_id'] = $businessEntity['business_entity_id'];
+            $personValues['person_type'] = 'IN';
+            $personCreateDto = new PersonCreateDto($personValues);
+            $personCreatService = PersonCreateService::make($personCreateDto);
+            $person = $personCreatService->execute();
+        }
 
 
         $customerDto = new CustomerCreateDto(
             [
-                'person_id' => $person['person_id'],
+                'person_id' => $person ? $person['person_id'] : null,
                 'nit' => $request->get('nit'),
-                'business_entity_id' => $businessEntity['business_entity_id']
+                'business_entity_id' => $businessEntity['business_entity_id'],
+                'business_name' => $request->get('business_name'),
             ]
         );
         $customerService = CustomerCreateService::make($customerDto);
