@@ -21,10 +21,10 @@ class SalesController extends Controller
     {
 
 
-
         $sales = SalesOrderHeader::select(
             'sales_order_header.order_date',
             'sales_order_header.paid',
+            'sales_order_header.total_due',
             'sales_order_header.status',
             'sales_order_header.sales_order_number',
             'person.first_name as customer_first_name',
@@ -36,7 +36,7 @@ class SalesController extends Controller
             ->join('customer', 'customer.customer_id', '=', 'sales_order_header.customer_id')
             ->leftJoin('person', 'person.person_id', '=', 'customer.person_id')
             ->join('address', 'address.address_id', '=', 'sales_order_header.bill_to_address_id')
-            ->orderBy('sales_order_header.order_date','desc')
+            ->orderBy('sales_order_header.order_date', 'desc')
             ->paginate(10);
 
         return SalesCollectionResource::collection($sales);
@@ -48,7 +48,7 @@ class SalesController extends Controller
     {
 
 
-        $header_values['is_paid'] = $request->get('payment') == "cash";
+        $header_values['is_paid'] = $request->get('payment') === 'cash';
         $header_values['customer_id'] = $request->get('customer')['customer_id'];
         $header_values['bill_to_address_id'] = $request->get('products')['billing']['address']['address_id'];
         $header_values['ship_to_address_id'] = $request->get('products')['billing']['address']['address_id'];
@@ -57,7 +57,7 @@ class SalesController extends Controller
         $header_values['total_due'] = $request->get('products')['total'];
         $header_values['payment_type'] = "cash";
         $header_values['online_order_flag'] = 0;
-        $header_values['freight'] = 0;
+        $header_values['freight'] = $request->get('delivery');
 
         $header_dto = new SalesHeaderCreateDto($header_values);
 
@@ -73,6 +73,18 @@ class SalesController extends Controller
 
         return new SalesResource(SalesOrderHeader::find($header['sales_order_id']));
 
+
+    }
+
+
+    public function show($id): SalesResource
+    {
+
+
+        return new SalesResource(
+            SalesOrderHeader::where('sales_order_number', $id)
+            ->firstOrFail()
+        );
 
     }
 

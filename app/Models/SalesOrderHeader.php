@@ -82,7 +82,7 @@ class SalesOrderHeader extends Model
 
     public function markAsPaid()
     {
-        $this->status = self::STATUS_PAID;
+        $this->paid = self::STATUS_PAID;
         $this->save();
     }
 

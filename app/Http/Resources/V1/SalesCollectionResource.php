@@ -19,6 +19,7 @@ class SalesCollectionResource extends JsonResource
         return [
             'order_date' => $this->order_date,
             'paid' => $this->paid === 1,
+            'total_due' => $this->total_due ,
             'status' => $this->status,
             'sales_order_number' => $this->sales_order_number,
             'customer' =>

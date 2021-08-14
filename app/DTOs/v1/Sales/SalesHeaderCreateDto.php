@@ -24,9 +24,9 @@ class SalesHeaderCreateDto extends BaseAbstractDto
     private $is_paid;
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getIsPaid()
+    public function getIsPaid(): bool
     {
         return $this->is_paid;
     }
@@ -132,7 +132,7 @@ class SalesHeaderCreateDto extends BaseAbstractDto
             'subtotal' => 'required',
             'freight' => 'required',
             'total_due' => 'required',
-            'is_paid' => 'required'
+            'is_paid' => 'required|boolean'
         ];
 
     }
