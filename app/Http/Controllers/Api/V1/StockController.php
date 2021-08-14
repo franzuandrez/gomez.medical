@@ -45,7 +45,7 @@ class StockController extends Controller
             ->join('product', 'product.product_id', '=', 'inventory.product_id')
             ->join('product_subcategory', 'product_subcategory.product_subcategory_id', '=', 'product.product_subcategory_id')
             ->join('bin', 'bin.bin_id', '=', 'inventory.bin_id')
-            ->orderBy('inventory.best_before', 'desc')
+            ->orderBy('inventory.best_before', 'asc')
             ->groupBy('inventory.product_id')
             ->groupBy('inventory.batch')
             ->groupBy('bin.bin_id')
