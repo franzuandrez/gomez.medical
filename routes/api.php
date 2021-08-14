@@ -56,6 +56,7 @@ Route::apiResource('v1/purchases', \App\Http\Controllers\Api\V1\PurchaseControll
 Route::get('v1/stocks', [\App\Http\Controllers\Api\V1\StockController::class, 'index']);
 Route::post('v1/inventory', [\App\Http\Controllers\Api\V1\InventoryController::class, 'store']);
 Route::get('v1/sales', [\App\Http\Controllers\Api\V1\SalesController::class, 'index']);
+Route::post('v1/sales', [\App\Http\Controllers\Api\V1\SalesController::class, 'store']);
 
 
 

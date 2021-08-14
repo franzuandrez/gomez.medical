@@ -11,6 +11,13 @@ class SalesOrderHeader extends Model
 
     protected $table = 'sales_order_header';
     protected $primaryKey = 'sales_order_id';
+    const STATUS_IN_PROCESS = 1;
+    const STATUS_APPROVED = 2;
+    const STATUS_BACKORDER = 3;
+    const STATUS_REJECTED = 4;
+    const STATUS_SHIPPED = 5;
+    const STATUS_CANCELLED = 6;
+    const STATUS_PAID = 1;
 
     protected $dates = [
         'order_date'
@@ -32,6 +39,52 @@ class SalesOrderHeader extends Model
     public const CREATED_AT = 'createdAt';
     public const UPDATED_AT = 'updatedAt';
 
+
+    public function markAsInProcess()
+    {
+
+        $this->status = self::STATUS_IN_PROCESS;
+        $this->save();
+    }
+
+    public function maskAsApproved()
+    {
+
+        $this->status = self::STATUS_APPROVED;
+        $this->save();
+    }
+
+    public function markAsBackOrdered()
+    {
+        $this->status = self::STATUS_BACKORDER;
+        $this->save();
+    }
+
+    public function markAsRejected()
+    {
+
+        $this->status = self::STATUS_REJECTED;
+        $this->save();
+    }
+
+    public function markAsShipped()
+    {
+
+        $this->status = self::STATUS_SHIPPED;
+        $this->save();
+    }
+
+    public function markAsCancelled()
+    {
+        $this->status = self::STATUS_CANCELLED;
+        $this->save();
+    }
+
+    public function markAsPaid()
+    {
+        $this->status = self::STATUS_PAID;
+        $this->save();
+    }
 
     public function customer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
