@@ -39,6 +39,7 @@ class StockController extends Controller
         if ($query) {
             $stocks = $stocks->orwhere('product.sku', '=', $query)
                 ->orWhere('product.code', '=', $query)
+                ->orWhere('bin.name', '=', $query)
                 ->orWhere('product.name', 'LIKE', "%{$query}%");
         }
         $stocks = $stocks->join('movement_type', 'movement_type.movement_type_id', '=', 'inventory.movement_type_id')
