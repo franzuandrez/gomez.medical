@@ -18,15 +18,14 @@ class StockCollectionResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->product_id . '-' . $this->batch,
+            'id' => $this->product_id . '|' . $this->batch . '|' . $this->bin,
             'batch' => $this->batch,
             'best_before' => $this->best_before,
             'bin' => $this->bin,
             'sku' => $this->sku,
             'product_id' => $this->product_id,
             'code' => $this->code,
-            'name' => $this->name,  
-            'description' => $this->description,
+            'name' => $this->name,
             'color' => $this->color,
             'size' => $this->size,
             'subcategory' => $this->subcategory,
