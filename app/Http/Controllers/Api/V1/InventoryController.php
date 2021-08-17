@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\api\v1;
 
-use App\DTOs\v1\Inventory\InventoryAddDto;
+use App\DTOs\v1\Inventory\InventoryMovementDto;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\InventoryResource;
 use App\Models\InventoryMovement;
-use App\Services\v1\Inventory\InventoryAddService;
+use App\Services\v1\Inventory\InventoryMovementService;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller
@@ -32,10 +32,11 @@ class InventoryController extends Controller
         //
 
         $values = $request->all();
-        $inventoryAddDto = new InventoryAddDto(
+        $values['type_movement'] = 'in';
+        $inventoryAddDto = new InventoryMovementDto(
             $values
         );
-        $inventoryAddService = InventoryAddService::make($inventoryAddDto);
+        $inventoryAddService = InventoryMovementService::make($inventoryAddDto);
         $inventory = $inventoryAddService->execute();
 
 

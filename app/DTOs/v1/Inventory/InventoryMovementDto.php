@@ -6,7 +6,7 @@ namespace App\DTOs\v1\Inventory;
 
 use App\DTOs\v1\BaseAbstractDto;
 
-class InventoryAddDto extends BaseAbstractDto
+class InventoryMovementDto extends BaseAbstractDto
 {
 
 
@@ -15,6 +15,15 @@ class InventoryAddDto extends BaseAbstractDto
     private $best_before;
     private $quantity;
     private $location_id;
+    private $type_movement;
+
+    /**
+     * @return mixed
+     */
+    public function getTypeMovement()
+    {
+        return $this->type_movement;
+    }
 
     /**
      * @return mixed
@@ -63,7 +72,8 @@ class InventoryAddDto extends BaseAbstractDto
             'product_id' => 'required',
             'batch' => 'required',
             'best_before' => 'required',
-            'quantity' => 'required'
+            'quantity' => 'required',
+            'type_movement' => 'required'
         ];
     }
 
@@ -75,6 +85,7 @@ class InventoryAddDto extends BaseAbstractDto
         $this->best_before = $data['best_before'];
         $this->quantity = $data['quantity'];
         $this->location_id = $data['location_id'];
+        $this->type_movement = $data['type_movement'];
 
         return true;
     }
