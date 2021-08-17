@@ -54,6 +54,7 @@ Route::post('v1/phone_number', [\App\Http\Controllers\Api\V1\PhoneNumberControll
 Route::apiResource('v1/ship_methods', \App\Http\Controllers\Api\V1\ShipMethodController::class);
 Route::apiResource('v1/purchases', \App\Http\Controllers\Api\V1\PurchaseController::class);
 Route::get('v1/stocks', [\App\Http\Controllers\Api\V1\StockController::class, 'index']);
+Route::get('v1/stocks/{id}', [\App\Http\Controllers\Api\V1\StockController::class, 'show']);
 Route::post('v1/inventory', [\App\Http\Controllers\Api\V1\InventoryController::class, 'store']);
 Route::get('v1/sales', [\App\Http\Controllers\Api\V1\SalesController::class, 'index']);
 Route::post('v1/sales', [\App\Http\Controllers\Api\V1\SalesController::class, 'store']);

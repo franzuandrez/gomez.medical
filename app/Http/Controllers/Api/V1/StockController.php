@@ -4,9 +4,11 @@ namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\StockCollectionResource;
+use App\Http\Resources\V1\StockResource;
 use App\Models\InventoryMovement;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+
 
 class StockController extends Controller
 {
@@ -77,6 +79,41 @@ class StockController extends Controller
     public function show($id)
     {
         //
+        $id_parts = explode('|', $id);
+
+
+        $stock = InventoryMovement::select(
+            'inventory.batch',
+            'inventory.best_before',
+            'bin.name as bin',
+            'product.product_id',
+            'product.sku',
+            'product.code',
+            'product.name',
+            'product.description',
+            'product.color',
+            'product.size',
+            'product_category.name as category',
+            'product_subcategory.name as subcategory',
+            \DB::raw('sum(movement_type.factor * inventory.quantity) as stock')
+        )
+            ->orWhere('product.product_id', '=', $id_parts[0])
+            ->orWhere('bin.name', '=', $id_parts[1])
+            ->orWhere('inventory.batch', '=', $id_parts[2])
+            ->join('movement_type', 'movement_type.movement_type_id', '=', 'inventory.movement_type_id')
+            ->join('product', 'product.product_id', '=', 'inventory.product_id')
+            ->join('product_subcategory', 'product_subcategory.product_subcategory_id', '=', 'product.product_subcategory_id')
+            ->join('product_category', 'product_subcategory.product_category_id', '=', 'product_category.product_category_id')
+            ->join('bin', 'bin.bin_id', '=', 'inventory.bin_id')
+            ->orderBy('inventory.best_before', 'asc')
+            ->groupBy('inventory.product_id')
+            ->groupBy('inventory.batch')
+            ->groupBy('bin.bin_id')
+            ->firstOrFail();
+
+        return new StockResource($stock);
+
+
     }
 
     /**
