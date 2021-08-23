@@ -17,7 +17,8 @@ class BusinessEntityAddressResource extends JsonResource
         return [
             'business_address_id' => $this->business_address_id,
             'address' => $this->address,
-            'address_type' => $this->addressType
+            'address_type' => $this->addressType,
+            'default' => boolval($this->default)
         ];
     }
 }
