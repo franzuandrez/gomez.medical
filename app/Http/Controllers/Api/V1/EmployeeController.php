@@ -4,14 +4,18 @@ namespace App\Http\Controllers\api\v1;
 
 use App\DTOs\v1\BusinessEntity\BusinessEntityCreateDto;
 use App\DTOs\v1\Employee\EmployeeAddDto;
+use App\DTOs\v1\Employee\EmployeeEditDto;
 use App\DTOs\v1\Person\PersonCreateDto;
+use App\DTOs\v1\Person\PersonEditDto;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\EmployeeCollectionResource;
 use App\Http\Resources\V1\EmployeeResource;
 use App\Models\Employee;
 use App\Services\v1\BusinessEntity\BusinessEntityCreateService;
 use App\Services\v1\Employee\EmployeeAddService;
+use App\Services\v1\Employee\EmployeeEditService;
 use App\Services\v1\Person\PersonCreateService;
+use App\Services\v1\Person\PersonEditService;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -88,11 +92,28 @@ class EmployeeController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return EmployeeResource
      */
     public function update(Request $request, $id)
     {
         //
+
+
+        $personValues = $request->all();
+        $personCreateDto = new PersonEditDto($personValues);
+        $personCreatService = PersonEditService::make($personCreateDto);
+        $personCreatService->execute();
+
+
+        $employeeValues = $request->all();
+        $employeeValues['employee_id'] = $id;
+
+        $employeeDto = new EmployeeEditDto($employeeValues);
+        $employeeService = EmployeeEditService::make($employeeDto);
+        $employeeService->execute();
+
+
+        return new EmployeeResource(Employee::find($id));
     }
 
     /**

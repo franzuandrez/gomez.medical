@@ -22,15 +22,21 @@ class EmployeeResource extends JsonResource
             'job_title' => $this->job_title,
             'birth_date' => $this->birth_date,
             'gender' => $this->gender,
+            'marital_status' => $this->marital_status,
             'hired_date' => $this->hired_date,
             'person' => [
+                'person_id' => $businessEntity->person->person_id,
                 'title' => $businessEntity->person->title,
                 'first_name' => $businessEntity->person->first_name,
                 'middle_name' => $businessEntity->person->middle_name,
                 'last_name' => $businessEntity->person->last_name,
             ],
-            'address' => BusinessEntityAddressResource::collection($businessEntity->businessEntityAddress),
-            'phones' => PhoneNumberResource::collection($businessEntity->phones),
+            'user' => [
+                'id' => $this->user ? $this->user->id : '',
+                'username' => $this->user ? $this->user->name : '',
+                'email' => $this->user ? $this->user->email : '',
+            ],
+            'business_entity' => new BusinessEntityResource($businessEntity),
 
         ];
     }

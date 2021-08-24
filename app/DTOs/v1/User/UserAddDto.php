@@ -41,8 +41,8 @@ class UserAddDto extends BaseAbstractDto
     {
 
         return [
-            'name' => 'required',
-            'email' => 'required',
+            'name' => 'required|unique',
+            'email' => 'required|unique',
             'password' => 'required',
         ];
     }

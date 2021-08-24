@@ -33,7 +33,7 @@ class EmployeeEditService implements ServiceInterface
     {
 
         $employee = Employee::findOrFail($this->dto->getEmployeeId());
-        $employee->national_id_number = $this->dto->getNationalId();
+        $employee->national_id_number = $this->dto->getNationalIdNumber();
         $employee->birth_date = $this->dto->getBirthDate();
         $employee->job_title = $this->dto->getJobTitle();
         $employee->marital_status = $this->dto->getMaritalStatus();
