@@ -39,7 +39,7 @@ class EmployeeAddService implements ServiceInterface
 
         $employee = new Employee();
         $employee->business_entity_id = $this->dto->getBusinessEntityId();
-        $employee->national_id_number = $this->dto->getNationalId();
+        $employee->national_id_number = $this->dto->getNationalIdNumber();
         $employee->birth_date = $this->dto->getBirthDate();
         $employee->job_title = $this->dto->getJobTitle();
         $employee->marital_status = $this->dto->getMaritalStatus();
