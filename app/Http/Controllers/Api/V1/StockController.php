@@ -74,9 +74,9 @@ class StockController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return StockResource
      */
-    public function show($id)
+    public function show($id): StockResource
     {
         //
         $id_parts = explode('|', $id);
