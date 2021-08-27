@@ -52,6 +52,18 @@ class PurchaseOrderHeader extends Model
         $this->save();
     }
 
+    public function scopeCompleted($query)
+
+    {
+        return $query->where('purchase_order_header.status', self::STATUS_COMPLETED);
+    }
+
+    public function scopeReceived($query)
+    {
+
+        return $query->where('purchase_order_header.status', self::STATUS_RECEIVED);
+    }
+
     public function employee(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');
