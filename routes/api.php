@@ -64,6 +64,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('v1/employees', \App\Http\Controllers\Api\V1\EmployeeController::class);
     Route::apiResource('v1/employees_user', \App\Http\Controllers\Api\V1\UserController::class);
     Route::get('v1/dashboard', [\App\Http\Controllers\Api\V1\DashboardController::class, 'index']);
+    Route::patch('v1/purchases_locate_products/{id}', [\App\Http\Controllers\Api\V1\PurchaseLocateProductsController::class, 'update']);
 });
 
 
