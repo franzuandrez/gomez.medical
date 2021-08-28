@@ -50,7 +50,7 @@ class SalesDetailCreateService implements ServiceInterface
             $detail->order_quantity = $product['quantity'];
             $detail->unit_price = $product['price'];
             $detail->unit_price_discount = 0;
-            $detail->line_total = $product['subtotal'];
+            $detail->line_total = $product['quantity'] * $product['price'];
             $detail->product_id = $productDB->product_id;
             $detail->special_offer_id = 1;
             $detail->save();
@@ -66,7 +66,6 @@ class SalesDetailCreateService implements ServiceInterface
             );
             $inventoryAddService = InventoryMovementService::make($inventoryAddDto);
             $inventoryAddService->execute();
-
 
 
         }

@@ -78,7 +78,7 @@ class SalesController extends Controller
     }
 
 
-    public function show($id): SalesResource
+    public function show($id)
     {
 
 

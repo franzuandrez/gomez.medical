@@ -60,6 +60,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('v1/inventory', [\App\Http\Controllers\Api\V1\InventoryController::class, 'store']);
     Route::get('v1/sales', [\App\Http\Controllers\Api\V1\SalesController::class, 'index']);
     Route::post('v1/sales', [\App\Http\Controllers\Api\V1\SalesController::class, 'store']);
+    Route::patch('v1/unpaid_sales/{id}', [\App\Http\Controllers\Api\V1\UnPaidSalesController::class, 'update']);
     Route::get('v1/sales/{id}', [\App\Http\Controllers\Api\V1\SalesController::class, 'show']);
     Route::apiResource('v1/employees', \App\Http\Controllers\Api\V1\EmployeeController::class);
     Route::apiResource('v1/employees_user', \App\Http\Controllers\Api\V1\UserController::class);
