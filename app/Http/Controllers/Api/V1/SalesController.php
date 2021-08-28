@@ -6,7 +6,7 @@ use App\DTOs\v1\Sales\SalesDetailCreateDto;
 use App\DTOs\v1\Sales\SalesHeaderCreateDto;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\SalesCollectionResource;
-use App\Http\Resources\v1\SalesResource;
+use App\Http\Resources\V1\SalesResource;
 use App\Models\SalesOrderHeader;
 use App\Services\v1\Sales\SalesDetailCreateService;
 use App\Services\v1\Sales\SalesHeaderCreateService;
