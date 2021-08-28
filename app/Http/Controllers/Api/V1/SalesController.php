@@ -71,6 +71,7 @@ class SalesController extends Controller
         $detail_service->execute();
 
 
+
         return new SalesResource(SalesOrderHeader::find($header['sales_order_id']));
 
 
