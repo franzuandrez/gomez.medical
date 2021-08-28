@@ -20,7 +20,6 @@ class StockResource extends JsonResource
             'best_before' => $this->best_before,
             'bin' => $this->bin,
             'sku' => $this->sku,
-            'code' => $this->code,
             'product_id' => $this->product_id,
             'code' => $this->code,
             'name' => $this->name,
