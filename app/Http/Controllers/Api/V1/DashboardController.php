@@ -152,7 +152,7 @@ class DashboardController extends Controller
             'customer.nit',
             \DB::raw('(select sum(order_quantity) from  sales_order_detail where sales_order_header_id  = sales_order_id group by sales_order_header_id) as total_products')
         )->join('customer', 'customer.customer_id', '=', 'sales_order_header.customer_id')
-            ->join('person', 'person.business_entity_id', '=', 'customer.business_entity_id')
+            ->leftJoin('person', 'person.business_entity_id', '=', 'customer.business_entity_id')
             ->whereBetween('order_date',
                 [
                     $start_date,
