@@ -46,7 +46,7 @@ class ProductAddImagesService implements ServiceInterface
             $content = file_get_contents($image);
             $image_extension = $image->clientExtension();
             $name_without_spaces = preg_replace('/\s+/', '-', $this->dto->getProductName());
-            $name = $name_without_spaces . '-' . Carbon::now()->unix() . '.' . $image_extension;
+            $name = $name_without_spaces . '-' . Carbon::now()->unix() . '-' . $imageKey . '.' . $image_extension;
             Storage::disk('s3')->put('products/' . $name, $content, 'public');
             $url = Storage::disk('s3')->url('products/' . $name);
             $product_photo = new ProductPhoto();
