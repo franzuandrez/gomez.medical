@@ -43,11 +43,11 @@ class ProductAddImagesService implements ServiceInterface
         $images_saved = collect([]);
         $this->delete_previous_images();
         foreach ($this->dto->getImages() as $imageKey => $image) {
-            $content = file_get_contents($image);
+
             $image_extension = $image->clientExtension();
             $name_without_spaces = preg_replace('/\s+/', '-', $this->dto->getProductName());
             $name = $name_without_spaces . '-' . Carbon::now()->unix() . '-' . $imageKey . '.' . $image_extension;
-            Storage::disk('s3')->put('products/' . $name, $content, 'public');
+            Storage::disk('s3')->put('products/' . $name, $image, 'public');
             $url = Storage::disk('s3')->url('products/' . $name);
             $product_photo = new ProductPhoto();
             $product_photo->product_id = $this->dto->getProductId();
