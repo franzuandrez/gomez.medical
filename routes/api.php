@@ -68,5 +68,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('v1/purchases_locate_products/{id}', [\App\Http\Controllers\Api\V1\PurchaseLocateProductsController::class, 'update']);
 });
 
-
+Route::get('v1/inventory_management', [\App\Http\Controllers\Api\V1\InventoryManagementController::class, 'index']);
+Route::get('v1/stock_by_stock', [\App\Http\Controllers\Api\V1\StockByTypeController::class, 'index']);
 
