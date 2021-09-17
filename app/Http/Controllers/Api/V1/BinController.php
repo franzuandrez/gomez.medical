@@ -27,7 +27,7 @@ class BinController extends Controller
 
         $bins = Bin::orderby('updatedAt', 'desc');
         if ($query) {
-            $bins = $bins->where('name', $query);
+            $bins = $bins->where('name','like', "%$query%");
         }
         $bins = $bins->paginate($perPage);
 

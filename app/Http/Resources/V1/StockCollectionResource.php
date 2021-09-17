@@ -22,6 +22,7 @@ class StockCollectionResource extends JsonResource
             'batch' => $this->batch,
             'best_before' => $this->best_before,
             'bin' => $this->bin,
+            'bin_id' => $this->bin_id,
             'sku' => $this->sku,
             'product_id' => $this->product_id,
             'code' => $this->code,

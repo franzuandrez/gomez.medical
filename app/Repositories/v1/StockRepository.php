@@ -31,6 +31,7 @@ class StockRepository implements StockRepositoryInterface
 
             $products = Product::orwhere('sku', $type_id)
                 ->orwhere('code', $type_id)
+                ->orwhere('product_id', $type_id)
                 ->pluck('product_id')->toArray();
             $stocks = $stocks->whereIn('product.product_id', $products);
 
@@ -80,6 +81,7 @@ class StockRepository implements StockRepositoryInterface
             'inventory.batch',
             'inventory.best_before',
             'bin.name as bin',
+            'bin.bin_id as bin_id',
             'product.product_id',
             'product.sku',
             'product.code',

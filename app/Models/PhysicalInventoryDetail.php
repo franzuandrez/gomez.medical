@@ -11,7 +11,7 @@ class PhysicalInventoryDetail extends Model
 
     protected $primaryKey = 'id';
     protected $table = 'physical_inventory_detail';
-
+    public $timestamps = false;
     protected $fillable = [
         'header_id',
         'product_id',
