@@ -6,7 +6,9 @@ namespace App\Services\v1\Sales;
 
 use App\DTOs\v1\BaseAbstractDto;
 use App\DTOs\v1\Sales\SalesHeaderCreateDto;
+use App\Models\Employee;
 use App\Models\SalesOrderHeader;
+use App\Models\SalesPerson;
 use App\Services\v1\ServiceInterface;
 use Carbon\Carbon;
 use InvalidArgumentException;
@@ -52,7 +54,9 @@ class SalesHeaderCreateService implements ServiceInterface
         $sales_header->freight = $this->dto->getFreight();
         $sales_header->total_due = $this->dto->getTotalDue();
         $sales_header->comments = $this->dto->getComments();
-        $sales_header->sales_person_id = 340;
+        $sales_header->sales_person_id = SalesPerson::whereBusinessEntityId(
+            Employee::whereLoginId(\Auth::id())->first()->business_entity_id
+        )->sales_person_id;
         $sales_header->save();
         if ($this->dto->getIsPaid()) {
             $sales_header->markAsPaid();
