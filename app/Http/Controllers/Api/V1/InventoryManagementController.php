@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\api\v1;
+namespace App\Http\Controllers\api\V1;
 
 use App\DTOs\v1\Inventory\InventoryManagementDetailNewDto;
 use App\DTOs\v1\Inventory\InventoryManagementHeaderNewDto;
@@ -60,6 +60,16 @@ class InventoryManagementController extends Controller
 
         return new PhysicalInventoryHeaderResource(PhysicalInventoryHeader::find($header['id']));
 
+
+    }
+
+
+    public function show($id)
+    {
+
+        $inventory = PhysicalInventoryHeader::findOrFail($id);
+
+        return new PhysicalInventoryHeaderResource($inventory);
 
     }
 

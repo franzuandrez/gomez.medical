@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PhysicalInventoryHeader extends Model
 {
@@ -26,6 +27,13 @@ class PhysicalInventoryHeader extends Model
     {
 
         return $this->hasMany(PhysicalInventoryDetail::class, 'header_id', 'id');
+    }
+
+    public function employee(): BelongsTo
+    {
+        return $this->belongsTo(Employee::class,
+            'done_by',
+            'employee_id');
     }
 
 }

@@ -12,11 +12,11 @@ class PhysicalInventoryDetail extends Model
     protected $primaryKey = 'id';
     protected $table = 'physical_inventory_detail';
     public $timestamps = false;
+
     protected $fillable = [
         'header_id',
         'product_id',
         'batch',
-        'location_id',
         'location_id',
         'system_quantity',
         'physical_quantity',
@@ -38,6 +38,12 @@ class PhysicalInventoryDetail extends Model
     {
 
         return $this->belongsTo(Product::class, 'product_id', 'product_id');
+
+    }
+    public function location(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+
+        return $this->belongsTo(Bin::class, 'location_id', 'bin_id');
 
     }
 }

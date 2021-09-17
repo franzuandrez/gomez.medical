@@ -66,11 +66,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('v1/employees_user', \App\Http\Controllers\Api\V1\UserController::class);
     Route::get('v1/dashboard', [\App\Http\Controllers\Api\V1\DashboardController::class, 'index']);
     Route::patch('v1/purchases_locate_products/{id}', [\App\Http\Controllers\Api\V1\PurchaseLocateProductsController::class, 'update']);
-
+    Route::get('v1/inventory_management/{id}', [\App\Http\Controllers\Api\V1\InventoryManagementController::class, 'show']);
     Route::post('v1/inventory_management', [\App\Http\Controllers\Api\V1\InventoryManagementController::class, 'store']);
-
+    Route::get('v1/inventory_management', [\App\Http\Controllers\Api\V1\InventoryManagementController::class, 'index']);
+    Route::get('v1/stock_by_type', [\App\Http\Controllers\Api\V1\StockByTypeController::class, 'index']);
 });
 
-Route::get('v1/inventory_management', [\App\Http\Controllers\Api\V1\InventoryManagementController::class, 'index']);
-Route::get('v1/stock_by_type', [\App\Http\Controllers\Api\V1\StockByTypeController::class, 'index']);
+
+
 
