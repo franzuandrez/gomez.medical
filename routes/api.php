@@ -54,7 +54,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/phone_number_types', [\App\Http\Controllers\Api\V1\PhoneNumberTypeController::class, 'index']);
     Route::post('v1/phone_number', [\App\Http\Controllers\Api\V1\PhoneNumberController::class, 'store']);
     Route::apiResource('v1/ship_methods', \App\Http\Controllers\Api\V1\ShipMethodController::class);
-    Route::apiResource('v1/purchases', \App\Http\Controllers\Api\V1\PurchaseController::class);
+
     Route::get('v1/stocks', [\App\Http\Controllers\Api\V1\StockController::class, 'index']);
     Route::get('v1/stocks/{id}', [\App\Http\Controllers\Api\V1\StockController::class, 'show']);
     Route::post('v1/inventory', [\App\Http\Controllers\Api\V1\InventoryController::class, 'store']);
@@ -72,6 +72,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/stock_by_type', [\App\Http\Controllers\Api\V1\StockByTypeController::class, 'index']);
 });
 
-
-
+Route::get('v1/pending_printouts/{id}', [\App\Http\Controllers\api\v1\PrintoutController::class, 'show']);
+Route::apiResource('v1/purchases', \App\Http\Controllers\Api\V1\PurchaseController::class);
 
