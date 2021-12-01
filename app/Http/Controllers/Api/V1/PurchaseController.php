@@ -30,12 +30,18 @@ class PurchaseController extends Controller
     {
         //
 
+        $status = $request->get('status');
+
         $purchases = PurchaseOrderHeader::select(
             'ship_method.name as ship_method',
             'vendor.name as vendor',
             'purchase_order_header.*',
-        )
-            ->leftJoin('ship_method', 'ship_method.ship_method_id', '=', 'purchase_order_header.ship_method_id')
+        );
+
+        if (!empty($status)) {
+            $purchases = $purchases->where('status', $status);
+        }
+        $purchases = $purchases->leftJoin('ship_method', 'ship_method.ship_method_id', '=', 'purchase_order_header.ship_method_id')
             ->join('vendor', 'vendor.vendor_id', '=', 'purchase_order_header.vendor_id')
             ->join('employee', 'employee.employee_id', '=', 'purchase_order_header.employee_id')
             ->orderBy('purchase_order_header.order_date', 'desc')
