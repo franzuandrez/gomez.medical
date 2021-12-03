@@ -5,8 +5,10 @@ namespace App\Services\v1\Purchasing;
 
 
 use App\DTOs\v1\BaseAbstractDto;
+use App\DTOs\v1\Printout\PrintoutCreateDto;
 use App\DTOs\v1\Purchasing\PurchasingDetailReceiveDto;
 use App\Models\PurchaseOrderDetail;
+use App\Services\v1\Printout\PrintoutCreateService;
 use App\Services\v1\ServiceInterface;
 use InvalidArgumentException;
 
@@ -47,6 +49,15 @@ class PurchasingDetailReceiveService implements ServiceInterface
             $detail->unit_price = $product['unit_price'];
             $detail->line_total = $detail->received_quantity * $detail->unit_price;
             $detail->save();
+
+            $dtoPrintout = new PrintoutCreateDto([
+                'quantity' => $detail->received_quantity,
+                'product_id' => $detail->product_id,
+                'comments' => 'PURCHASE',
+                'doc_id' => $detail->purchase_order_id
+            ]);
+            $servicePrintout = PrintoutCreateService::make($dtoPrintout);
+            $servicePrintout->execute();
             $order_detail->push($detail);
         }
 
