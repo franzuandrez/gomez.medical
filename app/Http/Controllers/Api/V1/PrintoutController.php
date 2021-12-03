@@ -33,6 +33,93 @@ class PrintoutController extends Controller
 
 
 
+    private function sku_from_name($name)
+    {
+        $name = $this->clear($name);
+        $sku = '';
+        $MAX_LENGTH = 12;
+        $parts = explode(' ', $name);
+        $selected_names = collect([]);
+        foreach ($parts as $part) {
+            if (strlen($part) >= 3) {
+                $selected_names->add($part);
+            }
+        }
+        $selected_lengths = $selected_names->map(function ($item) {
+            return strlen($item);
+        });
+        $sum = $selected_lengths->sum();
+        $max = $MAX_LENGTH - count($selected_lengths) + 1;
+        $result = $selected_lengths->map(function ($item) use ($sum, $max) {
+            return intval(round($item / $sum * $max));
+        });
+        for ($i = 0; $i < count($result); $i++) {
+            $last_part = '';
+            if ($i != count($result) - 1) {
+                $last_part = '-';
+            }
+            $sku = $sku . substr($selected_names[$i], 0, $result[$i]) . $last_part;
+        }
+
+        if (strlen($sku) < $MAX_LENGTH) {
+
+            if (strlen($sku) == 11) {
+                $sku = $sku . 'A';
+            } else {
+                $temp = $MAX_LENGTH - 1 - strlen($sku);
+                $sku = $sku . '-' . str_pad('1', $temp, '0', STR_PAD_LEFT);
+            }
+
+
+        }
+        return $sku;
+
+    }
+
+
+    private function regenerate_skus()
+    {
+        $codes = Product::all();
+        $bad_codes = collect([]);
+
+
+        foreach ($codes as $code) {
+
+            if (strlen($code->sku) != 12 || $code->color == 'NA' || $code->size == 'NA') {
+                $bad_codes->add($code);
+            }
+
+        }
+        foreach ($bad_codes as $code) {
+            $sku = '';
+            if ($code->color == 'NA' && $code->size != 'NA') {
+                $sku = $this->sku_from_long_name($code->name, $code->size);
+                if (strlen($sku) < 12) {
+                    $sku = $this->sku_from_name_and_attr($code->name, $code->size);
+                }
+            }
+            if ($code->color != 'NA' && $code->size == 'NA') {
+                $sku = $this->sku_from_long_name($code->name, $code->color);
+                if (strlen($sku) < 12) {
+                    $sku = $this->sku_from_name_and_attr($code->name, $code->color);
+                }
+            }
+            if ($code->color == 'NA' && $code->size == 'NA') {
+                $sku = $this->sku_from_name($code->name);
+            }
+
+            $sku = strtoupper($sku);
+
+            Product::where('product_id',$code->product_id)->update([
+                'sku' => $sku
+            ]);
+
+        }
+
+
+    }
+
+
 
     public function show($id): AnonymousResourceCollection
     {
