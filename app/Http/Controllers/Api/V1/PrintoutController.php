@@ -31,6 +31,27 @@ class PrintoutController extends Controller
         return str_replace('ú', 'u', $name);
     }
 
+    private function sku_from_long_name($name, $attribute)
+    {
+        $name = $this->clear($name);
+        $attribute = $this->clear($attribute);
+        $parts = explode(' ', $name);
+
+        $sku = '';
+
+        if (strlen($attribute) >= 5 && count($parts) > 1) {
+
+            $sku = substr($parts[0], 0, 4) . '-' . substr($parts[1], 0, 3) . '-' . substr($attribute, 0, 3);
+
+        }
+
+        if (strlen($sku) < 12) {
+            $sku = $this->sku_from_name($name . ' ' . $attribute);
+        }
+
+        return $sku;
+    }
+
 
 
     private function sku_from_name($name)
