@@ -8,42 +8,25 @@ class PrintoutPrintDto extends BaseAbstractDto
 {
 
 
-    private $id;
-    private $quantity_printed;
-    private $printed_by;
+    private $printouts;
 
     /**
      * @return mixed
      */
-    public function getId()
+    public function getPrintouts()
     {
-        return $this->id;
+        return $this->printouts;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getQuantityPrinted()
-    {
-        return $this->quantity_printed;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPrintedBy()
-    {
-        return $this->printed_by;
-    }
 
 
     protected function configureValidatorRules(): array
     {
 
         return [
-            'id' => 'required',
-            'quantity_printed' => 'required',
-            'printed_by' => 'required',
+            'printouts.*.id' => 'required',
+            'printouts.*.quantity_printed' => 'required',
+            'printouts.*.printed_by' => 'required',
         ];
 
     }
@@ -52,9 +35,7 @@ class PrintoutPrintDto extends BaseAbstractDto
     {
 
 
-        $this->id = $data['id'];
-        $this->quantity_printed = $data['quantity_printed'];
-        $this->printed_by = $data['printed_by'];
+        $this->printouts = $data['printouts'];
 
         return true;
 
