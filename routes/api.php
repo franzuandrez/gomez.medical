@@ -73,5 +73,6 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::get('v1/pending_printouts/{id}', [\App\Http\Controllers\api\v1\PrintoutController::class, 'show']);
+Route::post('v1/pending_printouts', [\App\Http\Controllers\api\v1\PrintoutController::class, 'store']);
 Route::apiResource('v1/purchases', \App\Http\Controllers\Api\V1\PurchaseController::class);
 

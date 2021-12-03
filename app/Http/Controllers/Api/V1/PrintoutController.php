@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\api\v1;
 
+use App\DTOs\v1\Printout\PrintoutPrintDto;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\PrintoutCollectionResource;
+use App\Http\Resources\v1\PrintoutResource;
 use App\Models\Printout;
 use App\Models\Product;
+use App\Services\v1\Printout\PrintoutPrintService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Request;
 
 class PrintoutController extends Controller
 {
@@ -144,7 +148,7 @@ class PrintoutController extends Controller
 
             $sku = strtoupper($sku);
 
-            Product::where('product_id',$code->product_id)->update([
+            Product::where('product_id', $code->product_id)->update([
                 'sku' => $sku
             ]);
 
@@ -154,6 +158,24 @@ class PrintoutController extends Controller
     }
 
 
+    public function store(Request $request)
+    {
+
+
+        $printoutDto = new PrintoutPrintDto([
+            'printouts' => $request->get('printouts'),
+        ]);
+
+        $printoutService = PrintoutPrintService::make($printoutDto);
+        $printoutService->execute();
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Printed correctly'
+        ]);
+
+    }
 
     public function show($id): AnonymousResourceCollection
     {
