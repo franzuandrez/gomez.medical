@@ -62,7 +62,7 @@ class PrintoutCreateDto extends BaseAbstractDto
     protected function map(array $data): bool
     {
         $this->quantity = $data['quantity'];
-        $this->product_id = $data['quantity_printed'];
+        $this->product_id = $data['product_id'];
         $this->doc_id = $data['doc_id'];
         $this->comments = $data['comments'];
 
