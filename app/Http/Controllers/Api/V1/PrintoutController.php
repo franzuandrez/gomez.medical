@@ -52,7 +52,21 @@ class PrintoutController extends Controller
         return $sku;
     }
 
+    private function sku_from_name_and_attr($name, $attribute)
+    {
+        $sku = '';
+        $name = $this->clear($name);
+        $attribute = $this->clear($attribute);
+        if (strlen($name) >= 6) {
+            $sku = substr($name, 0, 6) . '-' . substr($attribute, 0, 5);
+        }
+        if (strlen($attribute) >= 6 && $sku == '') {
+            $sku = substr($name, 0, 5) . '-' . substr($attribute, 0, 6);
+        }
 
+
+        return $sku;
+    }
 
     private function sku_from_name($name)
     {
