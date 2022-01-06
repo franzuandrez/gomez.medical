@@ -36,9 +36,9 @@ class PrintoutPrintService implements ServiceInterface
 
         $printouts = collect([]);
         foreach ($this->dto->getPrintouts() as $print) {
-            $printout = Printout::find($print['id']);
+            $printout = Printout::find($print['Id']);
             $quantity_printed = $printout->quantity_printed;
-            $new_quantity_printed = $quantity_printed + $print['quantity_printed'];
+            $new_quantity_printed = $quantity_printed + $print['Quantity_Printed'];
             if ($printout->quantity < $new_quantity_printed) {
                 // TODO Refactor
                 $diff = $new_quantity_printed - $printout->quantity;
@@ -48,7 +48,7 @@ class PrintoutPrintService implements ServiceInterface
                 $new_printout->product_id = $printout->product_id;
                 $new_printout->doc_id = $printout->doc_id;
                 $new_printout->comments = "REPRINT";
-                $new_printout->printed_by = $print['printed_by'];
+                $new_printout->printed_by = $print['Printed_By'];
                 $new_printout->is_printed = 1;
                 $new_printout->save();
                 $printouts->push($new_printout);

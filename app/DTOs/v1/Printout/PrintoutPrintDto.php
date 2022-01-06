@@ -24,9 +24,9 @@ class PrintoutPrintDto extends BaseAbstractDto
     {
 
         return [
-            'printouts.*.id' => 'required',
-            'printouts.*.quantity_printed' => 'required',
-            'printouts.*.printed_by' => 'required',
+            'printouts.*.Id' => 'required',
+            'printouts.*.Quantity_Printed' => 'required',
+            'printouts.*.Printed_By' => 'required',
         ];
 
     }

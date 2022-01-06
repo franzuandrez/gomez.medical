@@ -10,7 +10,7 @@ use App\Models\Printout;
 use App\Models\Product;
 use App\Services\v1\Printout\PrintoutPrintService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Request;
+use Illuminate\Http\Request;
 
 class PrintoutController extends Controller
 {
@@ -163,7 +163,7 @@ class PrintoutController extends Controller
 
 
         $printoutDto = new PrintoutPrintDto([
-            'printouts' => $request->get('printouts'),
+            'printouts' => $request->get('Printouts'),
         ]);
 
         $printoutService = PrintoutPrintService::make($printoutDto);
@@ -182,11 +182,15 @@ class PrintoutController extends Controller
 
 
         $prints = Printout::select(
+            'printouts.id',
+            'printouts.product_id',
             'product.name',
             'product.description',
             'product.code',
             'product.sku',
             'printouts.quantity',
+            'printouts.quantity_printed',
+            'printouts.printed_by',
             'printouts.is_printed',
         )
             ->where('doc_id', $id)
