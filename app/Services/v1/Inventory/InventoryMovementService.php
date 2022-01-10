@@ -6,9 +6,11 @@ namespace App\Services\v1\Inventory;
 
 use App\DTOs\v1\BaseAbstractDto;
 use App\DTOs\v1\Inventory\InventoryMovementDto;
+use App\DTOs\v1\Printout\PrintoutCreateDto;
 use App\Models\Bin;
 use App\Models\InventoryMovement;
 use App\Models\InventoryMovementType;
+use App\Services\v1\Printout\PrintoutCreateService;
 use App\Services\v1\ServiceInterface;
 use InvalidArgumentException;
 
@@ -63,6 +65,14 @@ class InventoryMovementService implements ServiceInterface
         $inventory->movement_type_id = $type_movement->movement_type_id;
         $inventory->save();
 
+        $dtoPrintout = new PrintoutCreateDto([
+            'quantity' => $inventory->quantity,
+            'product_id' => $inventory->product_id,
+            'comments' => 'INVENTORY',
+            'doc_id' => $inventory->id
+        ]);
+        $servicePrintout = PrintoutCreateService::make($dtoPrintout);
+        $servicePrintout->execute();
 
         return $inventory->toArray();
 
