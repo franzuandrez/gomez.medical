@@ -72,6 +72,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/stock_by_type', [\App\Http\Controllers\Api\V1\StockByTypeController::class, 'index']);
 });
 
+Route::get('v1/inventory_printouts',[\App\Http\Controllers\api\v1\InventoryPrintoutController::class,'index']);
 Route::get('v1/pending_printouts/{id}', [\App\Http\Controllers\api\v1\PrintoutController::class, 'show']);
 Route::post('v1/pending_printouts', [\App\Http\Controllers\api\v1\PrintoutController::class, 'store']);
 Route::apiResource('v1/purchases', \App\Http\Controllers\Api\V1\PurchaseController::class);
