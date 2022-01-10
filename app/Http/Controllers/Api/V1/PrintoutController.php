@@ -194,6 +194,7 @@ class PrintoutController extends Controller
             'printouts.is_printed',
         )
             ->where('doc_id', $id)
+            ->where('comments','<>','INVENTORY')
             ->join('product', 'product.product_id', '=', 'printouts.product_id')
             ->paginate(15);
 
