@@ -35,6 +35,7 @@ class InventoryPrintoutController extends Controller
         )
             ->join('product', 'product.product_id', '=', 'printouts.product_id')
             ->where('printouts.comments', 'INVENTORY')
+            ->where('printouts.is_printed', '0')
         ->paginate(15);
 
         return PrintoutCollectionResource::collection($printouts);
