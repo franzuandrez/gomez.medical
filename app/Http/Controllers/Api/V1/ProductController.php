@@ -70,16 +70,20 @@ class ProductController extends Controller
         $product_price_list_service = ProductNewPriceListService::make($dto_price_list);
         $product_price_list_service->execute();
 
+        //TODO refactor validation
 
-        $dto_images = new ProductAddImagesDto(
-            [
-                'product_id' => $product['product_id'],
-                'product_name' => $product['name'],
-                'images' => $request->allFiles()['images'],
-            ]
-        );
-        $product_images_service = ProductAddImagesService::make($dto_images);
-        $product_images_service->execute();
+        $images = $request->allFiles()['images'];
+        if (count($images) > 0) {
+            $dto_images = new ProductAddImagesDto(
+                [
+                    'product_id' => $product['product_id'],
+                    'product_name' => $product['name'],
+                    'images' => $request->allFiles()['images'],
+                ]
+            );
+            $product_images_service = ProductAddImagesService::make($dto_images);
+            $product_images_service->execute();
+        }
 
 
         return ($product);
