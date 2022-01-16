@@ -55,6 +55,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('v1/phone_number', [\App\Http\Controllers\Api\V1\PhoneNumberController::class, 'store']);
     Route::apiResource('v1/ship_methods', \App\Http\Controllers\Api\V1\ShipMethodController::class);
 
+
     Route::get('v1/stocks', [\App\Http\Controllers\Api\V1\StockController::class, 'index']);
     Route::get('v1/stocks/{id}', [\App\Http\Controllers\Api\V1\StockController::class, 'show']);
     Route::post('v1/inventory', [\App\Http\Controllers\Api\V1\InventoryController::class, 'store']);
@@ -71,7 +72,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/inventory_management', [\App\Http\Controllers\Api\V1\InventoryManagementController::class, 'index']);
     Route::get('v1/stock_by_type', [\App\Http\Controllers\Api\V1\StockByTypeController::class, 'index']);
 });
-
+Route::get('v1/banks', [\App\Http\Controllers\Api\V1\BankController::class,'index']);
 Route::get('v1/labels_types',[\App\Http\Controllers\api\v1\LabelTypeController::class,'index']);
 Route::get('v1/inventory_printouts',[\App\Http\Controllers\api\v1\InventoryPrintoutController::class,'index']);
 Route::get('v1/pending_printouts/{id}', [\App\Http\Controllers\api\v1\PrintoutController::class, 'show']);
