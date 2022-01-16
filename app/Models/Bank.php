@@ -9,6 +9,7 @@ class Bank extends Model
 {
     use HasFactory;
 
+    protected $table = 'bank';
 
     protected $fillable = [
         'name'
