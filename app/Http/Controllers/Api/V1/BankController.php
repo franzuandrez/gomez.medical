@@ -14,7 +14,7 @@ class BankController extends Controller
 
     public function index()
     {
-        $banks = Bank::paginate(10);
+        $banks = Bank::all();
 
 
 
