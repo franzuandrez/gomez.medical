@@ -36,7 +36,6 @@ class VendorController extends Controller
 
 
         $vendor = new Vendor();
-        $vendor->account_number = $request->get('account_number');
         $vendor->name = $request->get('name');
         $vendor->url_web = $request->get('url_web');
         $vendor->save();
