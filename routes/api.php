@@ -75,6 +75,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('v1/business_entity_banks', [\App\Http\Controllers\Api\V1\BusinessEntityAddBankAccountController::class,'store']);
 });
 
+Route::get('v1/control_cash_register',[\App\Http\Controllers\api\v1\ControlCashRegisterController::class,'index']);
 Route::get('v1/labels_types',[\App\Http\Controllers\api\v1\LabelTypeController::class,'index']);
 Route::get('v1/inventory_printouts',[\App\Http\Controllers\api\v1\InventoryPrintoutController::class,'index']);
 Route::get('v1/pending_printouts/{id}', [\App\Http\Controllers\api\v1\PrintoutController::class, 'show']);
