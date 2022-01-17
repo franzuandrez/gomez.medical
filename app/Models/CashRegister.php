@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class CashRegister extends Model
 {
     use HasFactory;
+    protected $table = 'cash_register';
 
-    protected $table = [
+    protected $fillable = [
         'cash_register_number',
         'cash_stock',
         'store_id'
