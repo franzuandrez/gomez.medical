@@ -43,7 +43,8 @@ class User extends Authenticatable
 
 
     protected $with = [
-        'employee'
+        'employee',
+        'employee.businessEntity.salesPerson',
     ];
 
     public function employee(): \Illuminate\Database\Eloquent\Relations\HasOne
