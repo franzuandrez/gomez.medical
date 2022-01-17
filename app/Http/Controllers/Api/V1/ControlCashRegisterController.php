@@ -19,7 +19,7 @@ class ControlCashRegisterController extends Controller
             'cash_register_control_header.*',
             'person.first_name as sales_person_first_name',
             'person.last_name as sales_person_last_name',
-            'shift.name as shit_name',
+            'shift.name as shift_name',
             'cash_register.cash_register_number as cash_register',
         )
             ->join('shift','shift.shift_id','=','cash_register_control_header.shift_id')
