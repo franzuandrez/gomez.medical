@@ -35,11 +35,23 @@ class ControlCashRegisterHeader extends Model
 
     public function shift(): BelongsTo
     {
-        return $this->belongsTo(Shift::class, 'id', 'shift_id');
+        return $this->belongsTo(Shift::class, 'shift_id', 'shift_id');
     }
 
     public function cash_register(): BelongsTo
     {
-        return $this->belongsTo(CashRegister::class,'id','cash_register_id');
+        return $this->belongsTo(CashRegister::class, 'cash_register_id', 'id');
+    }
+
+    public function supervisor(): BelongsTo
+    {
+
+        return $this->belongsTo(Employee::class, 'supervised_id', 'employee_id');
+    }
+
+    public function sales_person(): BelongsTo
+    {
+
+        return $this->belongsTo(SalesPerson::class, 'seller_id', 'sales_person_id');
     }
 }
