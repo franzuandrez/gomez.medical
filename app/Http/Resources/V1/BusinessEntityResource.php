@@ -18,7 +18,8 @@ class BusinessEntityResource extends JsonResource
             'business_entity_id' => $this->business_entity_id,
             'email_addresses' => $this->emailAddress,
             'addresses' => BusinessEntityAddressResource::collection($this->businessEntityAddress),
-            'phone_numbers' => PhoneNumberResource::collection($this->phones)
+            'phone_numbers' => PhoneNumberResource::collection($this->phones),
+            'bank_accounts' => BusinessEntityBankAccountResource::collection($this->bank_accounts),
         ];
     }
 }
