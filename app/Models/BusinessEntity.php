@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class BusinessEntity extends Model
 {
@@ -18,13 +19,13 @@ class BusinessEntity extends Model
     public const UPDATED_AT = 'updatedAt';
 
 
-    public function businessEntityAddress(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function businessEntityAddress(): HasMany
     {
 
         return $this->hasMany(BusinessEntityAddress::class, 'business_entity_id', 'business_entity_id');
     }
 
-    public function emailAddress(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function emailAddress(): HasMany
     {
         return $this->hasMany(EmailAddress::class, 'business_entity_id', 'business_entity_id');
     }
@@ -35,7 +36,7 @@ class BusinessEntity extends Model
     }
 
 
-    public function creditCards(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function creditCards(): HasMany
     {
 
 
@@ -61,11 +62,18 @@ class BusinessEntity extends Model
 
     }
 
-    public function phones(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function phones(): HasMany
     {
         return $this->hasMany(PersonPhone::class,
             'business_entity_id',
             'business_entity_id'
         );
+    }
+
+    public function bank_accounts(): HasMany
+    {
+
+        return $this->hasMany(BusinessEntityBankAccount::class,
+            'business_entity_id', 'business_entity_id');
     }
 }
