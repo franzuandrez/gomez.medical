@@ -46,14 +46,27 @@ class ControlCashRegisterController extends Controller
     public function store(Request $request)
     {
 
+        //TODO refactor
+        $cash_register_id = 1;
 
+        $can_start = !ControlCashRegisterHeader::where('cash_register_id', $cash_register_id)->where('status', 'iniciado')->exists();
+
+        if (!$can_start) {
+            return response(['message' => 'Caja ya iniciada'], 422);
+        }
+
+        $current_shift = Shift::where('end_time', '>', Carbon::now()->format('H:i:s'))
+            ->where('start_time', '<', Carbon::now()->format('H:i:s'))
+            ->first();
+
+        if (!$current_shift) {
+            return response(['message' => 'Turno no disponible en este horario'], 422);
+        }
         $dtoHeaderValues = $request->all();
         $dtoHeaderValues['seller_id'] = \Auth::user()->employee->businessEntity->salesPerson->sales_person_id;
-        $dtoHeaderValues['shift_id'] = Shift::where('end_time', '>', Carbon::now()->format('H:i:s'))
-            ->where('start_time', '<', Carbon::now()->format('H:i:s'))
-            ->first()
-            ->shift_id;
-        $dtoHeaderValues['cash_register_id'] = 1;
+        $dtoHeaderValues['shift_id'] = $current_shift->shift_id;
+
+        $dtoHeaderValues['cash_register_id'] = $cash_register_id;
         $dtoHeaderValues['started_at'] = Carbon::now();
 
         $controlHeaderDto = new ControlCashRegisterHeaderStartDto($dtoHeaderValues);
