@@ -7,6 +7,7 @@ use App\DTOs\v1\CashControlRegister\ControlCashRegisterHeaderStartDto;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\ControlCashRegisterHeaderResource;
 use App\Http\Resources\v1\ControlCashHeaderCollectionResource;
+use App\Models\ControlCashRegisterDetail;
 use App\Models\ControlCashRegisterHeader;
 use App\Models\SalesOrderHeader;
 use App\Models\Shift;
@@ -87,6 +88,23 @@ class ControlCashRegisterController extends Controller
     {
 
         $control = ControlCashRegisterHeader::find($id);
+        $start_date = Carbon::today()->format('Y-m-d') . ' ' . $control->shift->start_time;
+        $end_date = Carbon::today()->format('Y-m-d') . ' ' . $control->shift->end_time;
+
+        $detail = ControlCashRegisterDetail::select
+        (
+            'payment_type.name',
+            'cash_register_control_detail.*',
+            DB::raw(
+                "(select sum(total_due) from
+                           sales_order_header
+                    where  cash_register_id = {$control->cash_register_id}
+                    and sales_order_header.payment_type = payment_type.internal_code
+                      and  order_date between  '{$start_date}' and '{$end_date}') as total"
+            ))
+            ->where('header_id', $control->id)
+            ->join('payment_type', 'payment_type.id', '=', 'cash_register_control_detail.payment_type')
+            ->get();
 
         $sales = [];
         if ($control->status == 'iniciado') {
@@ -101,7 +119,8 @@ class ControlCashRegisterController extends Controller
         return [
             'data' => [
                 'control' => new ControlCashRegisterHeaderResource($control),
-                'sales' => $sales
+                'sales' => $sales,
+                'detail' => $detail
             ]
         ];
     }
