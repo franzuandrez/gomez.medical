@@ -16,7 +16,7 @@ class PaymentTypeController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
 
-        $payments = PaymentType::paginate(10);
+        $payments = PaymentType::select('payment_type.*','payment_type.id as payment_type_id')->paginate(10);
 
 
         return PaymentTypeCollectionResource::collection($payments);
