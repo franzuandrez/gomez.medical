@@ -73,6 +73,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/stock_by_type', [\App\Http\Controllers\Api\V1\StockByTypeController::class, 'index']);
     Route::get('v1/banks', [\App\Http\Controllers\Api\V1\BankController::class,'index']);
     Route::post('v1/business_entity_banks', [\App\Http\Controllers\Api\V1\BusinessEntityAddBankAccountController::class,'store']);
+    Route::post('v1/control_cash_register',[\App\Http\Controllers\api\v1\ControlCashRegisterController::class,'store']);
+
 });
 
 Route::get('v1/payment_types',[\App\Http\Controllers\api\v1\PaymentTypeController::class,'index']);

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\api\v1;
 
+use App\DTOs\v1\CashControlRegister\ControlCashRegisterDetailStartDto;
+use App\DTOs\v1\CashControlRegister\ControlCashRegisterHeaderStartDto;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\ControlCashRegisterHeaderResource;
 use App\Http\Resources\v1\ControlCashHeaderCollectionResource;
-use App\Http\Resources\v1\ControlCashRegisterDetailResource;
 use App\Models\ControlCashRegisterHeader;
 use App\Models\SalesOrderHeader;
+use App\Models\Shift;
+use App\Services\v1\ControlCashRegister\ControlCashRegisterDetailStartService;
+use App\Services\v1\ControlCashRegister\ControlCashRegisterHeaderStartService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DB;
@@ -39,6 +43,33 @@ class ControlCashRegisterController extends Controller
     }
 
 
+    public function store(Request $request)
+    {
+
+
+        $dtoHeaderValues = $request->all();
+        $dtoHeaderValues['seller_id'] = \Auth::user()->employee->businessEntity->salesPerson->sales_person_id;
+        $dtoHeaderValues['shift_id'] = Shift::where('end_time', '>', Carbon::now()->format('H:i:s'))
+            ->where('start_time', '<', Carbon::now()->format('H:i:s'))
+            ->first()
+            ->shift_id;
+        $dtoHeaderValues['cash_register_id'] = 1;
+        $dtoHeaderValues['started_at'] = Carbon::now();
+
+        $controlHeaderDto = new ControlCashRegisterHeaderStartDto($dtoHeaderValues);
+        $controlHeaderService = ControlCashRegisterHeaderStartService::make($controlHeaderDto);
+        $control = $controlHeaderService->execute();
+
+        $dtoDetailValues['detail'] = $request->get('detail');
+        $dtoDetailValues['header_id'] = $control['id'];
+        $controlDetailDto = new ControlCashRegisterDetailStartDto($dtoDetailValues);
+        $controlDetailService = ControlCashRegisterDetailStartService::make($controlDetailDto);
+        $controlDetailService->execute();
+
+
+        return new ControlCashRegisterHeaderResource(ControlCashRegisterHeader::find($control['id']));
+    }
+
     public function show($id)
     {
 
@@ -56,7 +87,7 @@ class ControlCashRegisterController extends Controller
 
         return [
             'data' => [
-                'control' => new ControlCashRegisterDetailResource($control) ,
+                'control' => new ControlCashRegisterHeaderResource($control),
                 'sales' => $sales
             ]
         ];
