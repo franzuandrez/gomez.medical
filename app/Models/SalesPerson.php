@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SalesPerson extends Model
 {
@@ -22,4 +23,10 @@ class SalesPerson extends Model
 
     public const CREATED_AT = 'createdAt';
     public const UPDATED_AT = 'updatedAt';
+
+    public function businessEntity(): BelongsTo
+    {
+
+        return $this->belongsTo(BusinessEntity::class, 'business_entity_id', 'business_entity_id');
+    }
 }
