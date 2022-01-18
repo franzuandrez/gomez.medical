@@ -1,6 +1,8 @@
 <?php
 
-namespace App\DTOs\v1;
+namespace App\DTOs\v1\PayInPayOut;
+
+use App\DTOs\v1\BaseAbstractDto;
 
 class PayInPayOutCreateDto extends BaseAbstractDto
 {
@@ -15,6 +17,15 @@ class PayInPayOutCreateDto extends BaseAbstractDto
     private $factor;
     private $cash_register_id;
     private $employee_id;
+    private $payment_type_id;
+
+    /**
+     * @return mixed
+     */
+    public function getPaymentTypeId()
+    {
+        return $this->payment_type_id;
+    }
 
     /**
      * @return mixed
@@ -99,6 +110,7 @@ class PayInPayOutCreateDto extends BaseAbstractDto
             'amount' => 'required',
             'pay_date' => 'required',
             'description' => 'required',
+            'payment_type_id' => 'required',
             'factor' => 'required',
             'employee_id' => 'required',
         ];
@@ -112,6 +124,9 @@ class PayInPayOutCreateDto extends BaseAbstractDto
         $this->amount = $data['amount'];
         $this->pay_date = $data['pay_date'];
         $this->description = $data['description'];
+        $this->cash_register_id = $data['cash_register_id'];
+        $this->comments = $data['comments'];
+        $this->payment_type_id = $data['payment_type_id'];
         $this->factor = $data['factor'];
         $this->employee_id = $data['employee_id'];
 

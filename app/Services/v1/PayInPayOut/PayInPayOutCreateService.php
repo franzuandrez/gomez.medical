@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Services\v1;
+namespace App\Services\v1\PayInPayOut;
 
 
 use App\DTOs\v1\BaseAbstractDto;
-use App\DTOs\v1\PayInPayOutCreateDto;
+use App\DTOs\v1\PayInPayOut\PayInPayOutCreateDto;
 use App\Models\PayInPayOut;
+use App\Services\v1\ServiceInterface;
 use InvalidArgumentException;
 
 class PayInPayOutCreateService implements ServiceInterface
@@ -35,6 +36,7 @@ class PayInPayOutCreateService implements ServiceInterface
         $payment = new PayInPayOut();
         $payment->doc_type = $this->dto->getDocType();
         $payment->doc_id = $this->dto->getDocId();
+        $payment->payment_type_id = $this->dto->getPaymentTypeId();
         $payment->amount = $this->dto->getAmount();
         $payment->pay_date = $this->dto->getPayDate();
         $payment->factor = $this->dto->getFactor();
