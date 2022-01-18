@@ -14,6 +14,17 @@ class ControlCashRegisterHeaderResource extends JsonResource
      */
     public function toArray($request)
     {
-       return parent::toArray($request);
+
+        return [
+            'id' => $this->id,
+            'started_at' => $this->started_at,
+            'ended_at' => $this->ended_at,
+            'shift' => new ShiftResource($this->shift),
+            'cash_register' => $this->cash_register,
+            'supervisor' => new EmployeeResource($this->supervisor),
+            'sales_person' => ($this->sales_person),
+            'detail' => $this->detail,
+
+        ];
     }
 }
