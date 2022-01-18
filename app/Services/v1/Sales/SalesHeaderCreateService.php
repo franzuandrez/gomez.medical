@@ -53,6 +53,7 @@ class SalesHeaderCreateService implements ServiceInterface
         $sales_header->subtotal = $this->dto->getSubtotal();
         $sales_header->freight = $this->dto->getFreight();
         $sales_header->total_due = $this->dto->getTotalDue();
+        $sales_header->cash_register_id = 1;// TODO get current cash register
         $sales_header->comments = $this->dto->getComments();
         $sales_header->sales_person_id = SalesPerson::whereBusinessEntityId(
             Employee::whereLoginId(\Auth::id())->first()->business_entity_id
