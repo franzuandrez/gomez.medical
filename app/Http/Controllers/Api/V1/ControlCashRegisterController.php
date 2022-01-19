@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\api\v1;
 
+use App\DTOs\v1\CashControlRegister\ControlCashRegisterDetailEndDto;
 use App\DTOs\v1\CashControlRegister\ControlCashRegisterDetailStartDto;
+use App\DTOs\v1\CashControlRegister\ControlCashRegisterHeaderEndDto;
 use App\DTOs\v1\CashControlRegister\ControlCashRegisterHeaderStartDto;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\ControlCashRegisterHeaderResource;
@@ -11,7 +13,9 @@ use App\Models\ControlCashRegisterDetail;
 use App\Models\ControlCashRegisterHeader;
 use App\Models\SalesOrderHeader;
 use App\Models\Shift;
+use App\Services\v1\ControlCashRegister\ControlCashRegisterDetailEndService;
 use App\Services\v1\ControlCashRegister\ControlCashRegisterDetailStartService;
+use App\Services\v1\ControlCashRegister\ControlCashRegisterHeaderEndService;
 use App\Services\v1\ControlCashRegister\ControlCashRegisterHeaderStartService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -84,6 +88,25 @@ class ControlCashRegisterController extends Controller
         return new ControlCashRegisterHeaderResource(ControlCashRegisterHeader::find($control['id']));
     }
 
+    public function update(Request $request, $id): ControlCashRegisterHeaderResource
+    {
+        $dtoHeaderValues = $request->all();
+        $dtoHeaderValues['id'] = $id;
+        $dtoHeaderValues['ended_at'] = Carbon::now();
+        $dtoHeaderValues['supervised_id'] = \Auth::user()->employee->employee_id;
+        $controlHeaderDto = new ControlCashRegisterHeaderEndDto($dtoHeaderValues);
+        $controlHeaderService = ControlCashRegisterHeaderEndService::make($controlHeaderDto);
+        $control = $controlHeaderService->execute();
+
+        $dtoDetailValues['detail'] = $request->get('detail');
+        $controlDetailDto = new ControlCashRegisterDetailEndDto($dtoDetailValues);
+        $controlDetailService = ControlCashRegisterDetailEndService::make($controlDetailDto);
+        $controlDetailService->execute();
+
+
+        return new ControlCashRegisterHeaderResource(ControlCashRegisterHeader::find($control['id']));
+    }
+
     public function show($id)
     {
 
@@ -114,8 +137,6 @@ class ControlCashRegisterController extends Controller
             ->where('header_id', $control->id)
             ->join('payment_type', 'payment_type.id', '=', 'cash_register_control_detail.payment_type')
             ->get();
-
-
 
 
         return [
