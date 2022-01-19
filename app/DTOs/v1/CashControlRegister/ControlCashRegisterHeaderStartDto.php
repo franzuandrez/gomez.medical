@@ -64,7 +64,7 @@ class ControlCashRegisterHeaderStartDto extends BaseAbstractDto
         $this->seller_id = $data['seller_id'];
         $this->shift_id = $data['shift_id'];
         $this->cash_register_id = $data['cash_register_id'];
-        $this->detail = $data['detail'];
+
 
         return true;
     }
