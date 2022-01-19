@@ -96,30 +96,31 @@ class ControlCashRegisterController extends Controller
             'payment_type.name',
             'cash_register_control_detail.*',
             DB::raw(
-                "(select sum(total_due) from
-                           sales_order_header
+                "(select IFNULL(sum(amount),0) from
+                           pay_in_pay_out
                     where  cash_register_id = {$control->cash_register_id}
-                    and sales_order_header.payment_type = payment_type.internal_code
-                      and  order_date between  '{$start_date}' and '{$end_date}') as total"
-            ))
+                    and factor = 1
+                    and pay_in_pay_out.payment_type_id = payment_type.id
+                      and  pay_date between  '{$start_date}' and '{$end_date}') as income"
+            ), DB::raw(
+            "(select  IFNULL(sum(amount),0) from
+                           pay_in_pay_out
+                    where  cash_register_id = {$control->cash_register_id}
+                      and factor = -1
+                    and pay_in_pay_out.payment_type_id = payment_type.id
+                      and  pay_date between  '{$start_date}' and '{$end_date}') as outcome"
+        )
+        )
             ->where('header_id', $control->id)
             ->join('payment_type', 'payment_type.id', '=', 'cash_register_control_detail.payment_type')
             ->get();
 
-        $sales = [];
-        if ($control->status == 'iniciado') {
-            $sales = SalesOrderHeader::select('payment_type', DB::raw('sum(total_due) as total'))
-                ->where('order_date', '>', $control->started_at)
-                ->where('order_date', '<', Carbon::now())
-                ->groupBy('payment_type')
-                ->get();
-        }
+
 
 
         return [
             'data' => [
                 'control' => new ControlCashRegisterHeaderResource($control),
-                'sales' => $sales,
                 'detail' => $detail
             ]
         ];
