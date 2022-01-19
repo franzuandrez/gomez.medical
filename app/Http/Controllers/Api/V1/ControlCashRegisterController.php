@@ -42,6 +42,7 @@ class ControlCashRegisterController extends Controller
             ->join('business_entity', 'business_entity.business_entity_id', '=', 'sales_person.business_entity_id')
             ->join('person', 'person.business_entity_id', '=', 'business_entity.business_entity_id')
             ->leftJoin('employee', 'employee.employee_id', '=', 'supervised_id')
+            ->orderBy('started_at','desc')
             ->paginate(15);
 
         return ControlCashHeaderCollectionResource::collection($controls);
