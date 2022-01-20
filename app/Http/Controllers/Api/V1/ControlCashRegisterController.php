@@ -89,7 +89,7 @@ class ControlCashRegisterController extends Controller
         return new ControlCashRegisterHeaderResource(ControlCashRegisterHeader::find($control['id']));
     }
 
-    public function update(Request $request, $id): ControlCashRegisterHeaderResource
+    public function update(Request $request, $id): array
     {
         $dtoHeaderValues = $request->all();
         $dtoHeaderValues['id'] = $id;
@@ -105,7 +105,7 @@ class ControlCashRegisterController extends Controller
         $controlDetailService->execute();
 
 
-        return new ControlCashRegisterHeaderResource(ControlCashRegisterHeader::find($control['id']));
+        return $this->show($id);
     }
 
     public function show($id)
