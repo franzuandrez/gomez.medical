@@ -88,7 +88,7 @@ class SalesHeaderCreateService implements ServiceInterface
         $pay_in_pay_out_values['factor'] = 1;
         $pay_in_pay_out_values['cash_register_id'] = $sale->cash_register_id;
         $pay_in_pay_out_values['employee_id'] = $employee->employee_id;
-        $pay_in_pay_out_values['payment_type_id'] = PaymentType::where('internal_code', $sale->payment_type)->id;//TODO get id
+        $pay_in_pay_out_values['payment_type_id'] = PaymentType::where('internal_code', $sale->payment_type)->first()->id;//TODO get id
 
         $dto = new PayInPayOutCreateDto($pay_in_pay_out_values);
         $service = PayInPayOutCreateService::make($dto);
