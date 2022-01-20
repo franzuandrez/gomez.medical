@@ -16,7 +16,7 @@ class BusinessEntityAddressController extends Controller
     public function store(Request $request)
     {
 
-
+        //TODO REFACTOR
         $address = new Address();
         $address->address_line_1 = $request->get('address_line_1');
         $address->address_line_2 = $request->get('address_line_2');
