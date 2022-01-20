@@ -77,6 +77,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('v1/control_cash_register/{id}', [\App\Http\Controllers\api\v1\ControlCashRegisterController::class, 'update']);
 
 });
+Route::get('v1/customer_default', [\App\Http\Controllers\Api\V1\CustomerGetDefaultController::class, 'index']);
 
 Route::get('v1/payment_types', [\App\Http\Controllers\api\v1\PaymentTypeController::class, 'index']);
 Route::get('v1/control_cash_register', [\App\Http\Controllers\api\v1\ControlCashRegisterController::class, 'index']);
