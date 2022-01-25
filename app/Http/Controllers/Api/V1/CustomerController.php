@@ -35,8 +35,10 @@ class CustomerController extends Controller
             'person.middle_name',
             'person.last_name',
         )
-            ->where('nit', 'like', '%' . $query . '%')
+            ->orWhere('nit', 'like', '%' . $query . '%')
             ->orWhere('business_name', 'like', "%$query%")
+            ->orWhere('person.first_name', 'like', "%$query%")
+            ->orWhere('person.last_name', 'like', "%$query%")
             ->leftjoin('person', 'person.person_id', '=', 'customer.person_id')
             ->orderBy($sortField, $sortDirection)
             ->paginate(10);
