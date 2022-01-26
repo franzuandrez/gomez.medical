@@ -58,6 +58,6 @@ class Vendor extends Model
 
     public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(ProductVendor::class, 'vendor_id', 'vendor_id');
+        return $this->hasMany(ProductVendor::class, 'vendor_id', 'vendor_id')->orderBy('updatedAt', 'desc');
     }
 }
