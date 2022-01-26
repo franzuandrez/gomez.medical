@@ -42,6 +42,7 @@ class VendorEditProductAddedService implements ServiceInterface
 
 
         $product_added->standard_price = $this->dto->getCost();
+        $product_added->vendor_code = $this->dto->getVendorCode();
         $product_added->update();
 
 
