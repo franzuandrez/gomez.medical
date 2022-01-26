@@ -72,7 +72,7 @@ class ProductController extends Controller
 
         //TODO refactor validation
 
-        $images = $request->allFiles()['images'];
+        $images = array_key_exists('images', $request->allFiles()) ? $request->allFiles()['images'] : [];
         if (count($images) > 0) {
             $dto_images = new ProductAddImagesDto(
                 [
