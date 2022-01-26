@@ -21,6 +21,7 @@ use App\Http\Controllers\api\v1\InventoryPrintoutController;
 use App\Http\Controllers\api\v1\LabelTypeController;
 use App\Http\Controllers\Api\V1\LevelController;
 use App\Http\Controllers\Api\V1\LevelPositionsController;
+use App\Http\Controllers\api\v1\PaymentController;
 use App\Http\Controllers\api\v1\PaymentTypeController;
 use App\Http\Controllers\Api\V1\PhoneNumberController;
 use App\Http\Controllers\Api\V1\PhoneNumberTypeController;
@@ -124,6 +125,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 Route::get('v1/default_customer', [CustomerGetDefaultController::class, 'index']);
 
+Route::get('v1/payments', [PaymentController::class, 'index']);
 Route::get('v1/payment_types', [PaymentTypeController::class, 'index']);
 Route::get('v1/control_cash_register', [ControlCashRegisterController::class, 'index']);
 Route::get('v1/control_cash_register/{id}', [ControlCashRegisterController::class, 'show']);
