@@ -12,7 +12,7 @@ class VendorEditDto extends BaseAbstractDto
 
     private $account_number;
     private $name;
-    private $url_web;
+
     private $vendor_id;
 
     /**
@@ -31,13 +31,7 @@ class VendorEditDto extends BaseAbstractDto
         return $this->url_web;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAccountNumber()
-    {
-        return $this->account_number;
-    }
+
 
     /**
      * @return mixed
@@ -54,7 +48,6 @@ class VendorEditDto extends BaseAbstractDto
 
 
         return [
-            'account_number' => 'required',
             'name' => 'required',
             'vendor_id' => 'required',
         ];
@@ -66,7 +59,6 @@ class VendorEditDto extends BaseAbstractDto
     {
 
         $this->name = $data['name'];
-        $this->account_number = $data['account_number'];
         $this->url_web = $data['url_web'];
         $this->vendor_id = $data['vendor_id'];
 

@@ -39,7 +39,6 @@ class VendorEditService implements ServiceInterface
     {
 
         $vendor = Vendor::findOrFail($this->dto->getVendorId());
-        $vendor->account_number = $this->dto->getAccountNumber();
         $vendor->name = $this->dto->getName();
         $vendor->url_web = $this->dto->getUrlWeb();
         $vendor->update();
