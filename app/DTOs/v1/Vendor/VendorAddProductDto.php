@@ -14,6 +14,15 @@ class VendorAddProductDto extends BaseAbstractDto
     private $product_id;
     private $vendor_id;
     private $cost;
+    private $vendor_code;
+
+    /**
+     * @return mixed
+     */
+    public function getVendorCode()
+    {
+        return $this->vendor_code;
+    }
 
     /**
      * @return mixed
@@ -59,6 +68,7 @@ class VendorAddProductDto extends BaseAbstractDto
         $this->product_id = $data['product_id'];
         $this->vendor_id = $data['vendor_id'];
         $this->cost = $data['cost'];
+        $this->vendor_code = $data['vendor_code'];
 
 
         return true;

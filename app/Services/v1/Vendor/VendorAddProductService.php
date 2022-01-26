@@ -50,6 +50,7 @@ class VendorAddProductService implements ServiceInterface
         $new_product->vendor_id = $this->dto->getVendorId();
         $new_product->product_id = $this->dto->getProductId();
         $new_product->standard_price = $this->dto->getCost();
+        $new_product->vendor_code = $this->dto->getVendorCode();
         $new_product->save();
 
     }

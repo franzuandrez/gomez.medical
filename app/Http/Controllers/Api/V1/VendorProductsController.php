@@ -30,6 +30,7 @@ class VendorProductsController extends Controller
                     ->orWhere('product.sku', 'like', '%' . $query . '%');
             })
             ->join('product', 'product.product_id', '=', 'product_vendor.product_id')
+            ->orderBy('updatedAt', 'desc')
             ->get();
 
 
@@ -44,6 +45,7 @@ class VendorProductsController extends Controller
         $vendorProductDto = new VendorAddProductDto(
             [
                 'cost' => $request->get('cost'),
+                'vendor_code' => $request->get('vendor_code'),
                 'vendor_id' => $vendor_id,
                 'product_id' => $product_id
             ]
