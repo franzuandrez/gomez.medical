@@ -20,6 +20,7 @@ class VendorProductsResource extends JsonResource
                 'vendor_id' => $this->vendor_id,
                 'product' => new ProductResource($this->product),
                 'cost' => floatval($this->standard_price),
+                'vendor_code' => $this->vendor_code,
             ];
     }
 }
