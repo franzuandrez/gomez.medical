@@ -84,6 +84,8 @@ class PurchaseOrderHeader extends Model
     public function purchaseOrderDetail(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
 
-        return $this->hasMany(PurchaseOrderDetail::class, 'purchase_order_id', 'purchase_order_id');
+        return $this->hasMany(PurchaseOrderDetail::class, 'purchase_order_id', 'purchase_order_id')
+            ->select('*')//TODO optimize this query
+            ->join('product_vendor', 'product_vendor.product_id', '=', 'purchase_order_details.product_id');
     }
 }

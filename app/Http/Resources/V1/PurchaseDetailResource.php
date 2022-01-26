@@ -20,6 +20,7 @@ class PurchaseDetailResource extends JsonResource
             'due_date' => $this->due_date,
             'order_quantity' => floatval($this->order_quantity),
             'product' => new ProductResource($this->product),
+            'vendor_code'=>$this->vendor_code,
             'unit_price' => floatval($this->unit_price),
             'line_total' => floatval($this->line_total),
             'received_quantity' => floatval($this->received_quantity),
