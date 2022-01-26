@@ -14,7 +14,7 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = PayInPayOut::select(
-            'payment_type.id',
+            'pay_in_pay_out.id',
             'doc_type',
             'doc_id',
             'amount',
