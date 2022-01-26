@@ -21,15 +21,17 @@ use Illuminate\Http\Request;
 class EmployeeController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         //
 
-
+        $query = $request->get('query');
         $employees = Employee::select(
             'employee.*',
             'person.*'
         )
+            ->orWhere('person.first_name', 'LIKE', "%{$query}%")
+            ->orWhere('person.last_name', 'LIKE', "%{$query}%")
             ->join('business_entity', 'business_entity.business_entity_id', '=', 'employee.business_entity_id')
             ->join('person', 'person.business_entity_id', '=', 'business_entity.business_entity_id')
             ->paginate(5);
