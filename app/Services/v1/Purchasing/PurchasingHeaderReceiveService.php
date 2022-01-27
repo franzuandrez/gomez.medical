@@ -65,7 +65,7 @@ class PurchasingHeaderReceiveService implements ServiceInterface
         $pay_in_pay_out_values['doc_id'] = $purchase->purchase_order_id;
         $pay_in_pay_out_values['amount'] = $purchase->freight;
         $pay_in_pay_out_values['pay_date'] = Carbon::now();
-        $pay_in_pay_out_values['description'] = 'Pago de envio ';
+        $pay_in_pay_out_values['description'] = 'Pago de envio';
         $pay_in_pay_out_values['payment_type_id'] = PaymentType::where('internal_code', 'cash')->first()->id;//TODO get payment_type
         $pay_in_pay_out_values['comments'] = null;
         $pay_in_pay_out_values['factor'] = -1;
