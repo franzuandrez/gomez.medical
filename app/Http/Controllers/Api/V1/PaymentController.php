@@ -27,6 +27,7 @@ class PaymentController extends Controller
             'payment_type.name'
         )
             ->join('payment_type', 'payment_type.id', '=', 'payment_type_id')
+            ->orderBy('pay_date', 'desc')
             ->paginate(10);
         return PaymentCollectionResource::collection($payments);
     }
