@@ -32,6 +32,7 @@ use App\Http\Controllers\Api\V1\ProductCategoryController;
 use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\ProductSubCategoryController;
 use App\Http\Controllers\Api\V1\PurchaseController;
+use App\Http\Controllers\api\v1\PurchaseHeaderDetailController;
 use App\Http\Controllers\Api\V1\PurchaseLocateProductsController;
 use App\Http\Controllers\Api\V1\RackController;
 use App\Http\Controllers\Api\V1\RackLevelsController;
@@ -134,4 +135,5 @@ Route::get('v1/inventory_printouts', [InventoryPrintoutController::class, 'index
 Route::get('v1/pending_printouts/{id}', [PrintoutController::class, 'show']);
 Route::post('v1/pending_printouts', [PrintoutController::class, 'store']);
 Route::apiResource('v1/purchases', PurchaseController::class);
+Route::apiResource('v1/purchases_detail', PurchaseHeaderDetailController::class);
 
