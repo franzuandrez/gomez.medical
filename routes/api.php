@@ -121,7 +121,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('v1/business_entity_banks', [BusinessEntityAddBankAccountController::class, 'store']);
     Route::post('v1/control_cash_register', [ControlCashRegisterController::class, 'store']);
     Route::patch('v1/control_cash_register/{id}', [ControlCashRegisterController::class, 'update']);
-
+    Route::post('v1/payments', [PaymentController::class, 'store']);
 });
 Route::get('v1/default_customer', [CustomerGetDefaultController::class, 'index']);
 
