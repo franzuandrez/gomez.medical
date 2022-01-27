@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\V1\LevelController;
 use App\Http\Controllers\Api\V1\LevelPositionsController;
 use App\Http\Controllers\api\v1\PaymentController;
 use App\Http\Controllers\api\v1\PaymentTypeController;
+use App\Http\Controllers\api\v1\PersonController;
 use App\Http\Controllers\Api\V1\PhoneNumberController;
 use App\Http\Controllers\Api\V1\PhoneNumberTypeController;
 use App\Http\Controllers\Api\V1\PositionBinsController;
@@ -136,4 +137,5 @@ Route::get('v1/pending_printouts/{id}', [PrintoutController::class, 'show']);
 Route::post('v1/pending_printouts', [PrintoutController::class, 'store']);
 Route::apiResource('v1/purchases', PurchaseController::class);
 Route::apiResource('v1/purchases_detail', PurchaseHeaderDetailController::class);
+Route::get('v1/people', [PersonController::class, 'index']);
 
