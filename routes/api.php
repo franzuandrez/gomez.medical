@@ -142,4 +142,5 @@ Route::get('v1/people', [PersonController::class, 'index']);
 Route::get('v1/brands', [BrandController::class, 'index']);
 Route::post('v1/brands', [BrandController::class, 'store']);
 Route::get('v1/brands/{id}', [BrandController::class, 'show']);
+Route::patch('v1/brands/{id}', [BrandController::class, 'update']);
 

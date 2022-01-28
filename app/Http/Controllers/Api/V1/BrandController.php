@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\DTOs\v1\Brand\BrandCreateDto;
+use App\DTOs\v1\Brand\BrandEditDto;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\BrandCollectionResource;
 use App\Http\Resources\v1\BrandResource;
 use App\Models\Brand;
 use App\Services\v1\Brand\BrandCreateService;
+use App\Services\v1\Brand\BranEditService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -46,6 +48,19 @@ class BrandController extends Controller
         return new BrandResource(Brand::find($brand['brand_id']));
 
 
+    }
+
+    public function update(Request $request, $id): BrandResource
+    {
+
+        $values = $request->all();
+        $values['brand_id'] = $id;
+        $brandDto = new BrandEditDto($values);
+        $brandService = BranEditService::make($brandDto);
+
+        $brand = $brandService->execute();
+
+        return new BrandResource(Brand::find($brand['brand_id']));
     }
 
 }
