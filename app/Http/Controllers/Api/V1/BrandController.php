@@ -28,6 +28,12 @@ class BrandController extends Controller
     }
 
 
+    public function show($id)
+    {
+
+        return new BrandResource(Brand::find($id));
+    }
+
     public function store(Request $request)
     {
 
