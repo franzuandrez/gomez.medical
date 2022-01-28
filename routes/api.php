@@ -140,4 +140,5 @@ Route::apiResource('v1/purchases', PurchaseController::class);
 Route::apiResource('v1/purchases_detail', PurchaseHeaderDetailController::class);
 Route::get('v1/people', [PersonController::class, 'index']);
 Route::get('v1/brands', [BrandController::class, 'index']);
+Route::post('v1/brands', [BrandController::class, 'store']);
 
