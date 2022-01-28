@@ -16,9 +16,14 @@ class ProductSubCategoryController extends Controller
     {
 
 
-        $query = $request->get('query');
+        $q = $request->get('query');
 
-        $subcategories = ProductSubcategory::where('name', 'LIKE', '%' . $query . '%')
+        $subcategories = ProductSubcategory::select('product_subcategory.*')
+        ->where(function ($query) use ($q) {
+            return $query->orWhere('product_subcategory.name', 'LIKE', '%' . $q . '%')
+                ->orWhere('product_category.name', 'LIKE', '%' . $q . '%');
+        })
+            ->join('product_category','product_category.product_category_id','=','product_subcategory.product_category_id')
             ->orderBy('updatedAt', 'desc')
             ->paginate(15);
 
