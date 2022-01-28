@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\AddressTypeController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\BankController;
 use App\Http\Controllers\Api\V1\BinController;
+use App\Http\Controllers\api\v1\BrandController;
 use App\Http\Controllers\Api\V1\BusinessEntityAddBankAccountController;
 use App\Http\Controllers\Api\V1\BusinessEntityAddressController;
 use App\Http\Controllers\Api\V1\CategorySubcategoriesController;
@@ -138,4 +139,5 @@ Route::post('v1/pending_printouts', [PrintoutController::class, 'store']);
 Route::apiResource('v1/purchases', PurchaseController::class);
 Route::apiResource('v1/purchases_detail', PurchaseHeaderDetailController::class);
 Route::get('v1/people', [PersonController::class, 'index']);
+Route::get('v1/brands', [BrandController::class, 'index']);
 
