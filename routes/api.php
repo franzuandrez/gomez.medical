@@ -44,6 +44,7 @@ use App\Http\Controllers\Api\V1\SectionLocationController;
 use App\Http\Controllers\Api\V1\ShipMethodController;
 use App\Http\Controllers\Api\V1\StockByTypeController;
 use App\Http\Controllers\Api\V1\StockController;
+use App\Http\Controllers\api\v1\UnitMeasureController;
 use App\Http\Controllers\Api\V1\UnPaidSalesController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\VendorController;
@@ -143,4 +144,5 @@ Route::get('v1/brands', [BrandController::class, 'index']);
 Route::post('v1/brands', [BrandController::class, 'store']);
 Route::get('v1/brands/{id}', [BrandController::class, 'show']);
 Route::patch('v1/brands/{id}', [BrandController::class, 'update']);
+Route::get('v1/unit_measures', [UnitMeasureController::class, 'index']);
 
