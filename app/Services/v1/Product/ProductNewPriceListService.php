@@ -37,22 +37,28 @@ class ProductNewPriceListService implements ServiceInterface
     public function execute(): array
     {
 
+        $last_price = 0;
+        $response = null;
         $previous_list = ProductListPriceHistory::where('product_id', $this->dto->getProductId())
             ->orderBy('product_list_price_id', 'desc')
             ->first();
-        if($previous_list){
+        if ($previous_list) {
+            $last_price = $previous_list->list_price;
             $previous_list->end_date = Carbon::now();
             $previous_list->save();
+            $response = $previous_list;
         }
 
-        $list = new ProductListPriceHistory();
+        if ($last_price <> $this->dto->getListPrice()) {
+            $list = new ProductListPriceHistory();
+            $list->list_price = $this->dto->getListPrice();
+            $list->product_id = $this->dto->getProductId();
+            $list->start_date = Carbon::now();
+            $list->save();
+            $response = $list;
+        }
 
-        $list->list_price = $this->dto->getListPrice();
-        $list->product_id = $this->dto->getProductId();
-        $list->start_date = Carbon::now();
-        $list->save();
 
-
-        return $list->toArray();
+        return $response->toArray();
     }
 }
