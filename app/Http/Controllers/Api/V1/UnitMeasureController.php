@@ -20,7 +20,7 @@ class UnitMeasureController extends Controller
         $units = UnitMeasure::select('*')
             ->where(function ($query) use ($q) {
                 return $query->orWhere('name', 'LIKE', "%{$q}%")
-                    ->orWhere('unit_measure_code', '=', "{$q}");
+                    ->orWhere('unit_measure_code', 'LIKE', "%{$q}%");
             })
             ->paginate(10);
 
