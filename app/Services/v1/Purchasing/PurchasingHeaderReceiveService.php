@@ -47,6 +47,8 @@ class PurchasingHeaderReceiveService implements ServiceInterface
         $header->ship_method_id = $this->dto->getShipMethodId();
         $header->subtotal = $this->dto->getSubtotal();
         $header->freight = $this->dto->getFreight();
+        $header->is_paid = $this->dto->getIsPaid();
+        $header->needs_admin_verification = $this->dto->getNeedAdminVerification();
 
         if ($header->freight > 0) {
             $this->pay_in_pay_out_shipping($header);
