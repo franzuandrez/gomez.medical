@@ -32,7 +32,7 @@ class ProductNewStandardCostService implements ServiceInterface
 
         $last_cost = 0;
         $response = null;
-        $previous_cost = ProductCostHistory::where('product_id', $this->dto->getProductId)
+        $previous_cost = ProductCostHistory::where('product_id', $this->dto->getProductId())
             ->orderBy('product_cost_id', 'desc')
             ->first();
 
