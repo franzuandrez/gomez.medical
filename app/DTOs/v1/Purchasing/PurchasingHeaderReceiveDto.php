@@ -76,7 +76,7 @@ class PurchasingHeaderReceiveDto extends BaseAbstractDto
             'freight' => 'required',
             'purchase_order_id' => 'required',
             'is_paid' => 'required',
-            'need_admin_verification' => 'required'
+            'needs_admin_verification' => 'required'
         ];
     }
 
@@ -89,7 +89,7 @@ class PurchasingHeaderReceiveDto extends BaseAbstractDto
         $this->freight = $data['freight'];
         $this->purchase_order_id = $data['purchase_order_id'];
         $this->is_paid = $data['is_paid'];
-        $this->need_admin_verification = $data['need_admin_verification'];
+        $this->need_admin_verification = $data['needs_admin_verification'];
         return true;
     }
 }
