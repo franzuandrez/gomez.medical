@@ -11,6 +11,7 @@ class UnitMeasure extends Model
 
     protected $table = 'unit_measures';
     protected $primaryKey = 'unit_measure_code';
+    public $incrementing = false;
 
 
     protected $fillable = [
