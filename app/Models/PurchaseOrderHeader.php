@@ -22,6 +22,8 @@ class PurchaseOrderHeader extends Model
         'subtotal',
         'tax_amount',
         'total_due',
+        'need_admin_verification',
+        'is_paid'
     ];
 
     public const CREATED_AT = 'createdAt';
