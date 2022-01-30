@@ -14,6 +14,24 @@ class PurchasingHeaderReceiveDto extends BaseAbstractDto
     private $ship_method_id;
     private $subtotal;
     private $freight;
+    private $is_paid;
+    private $need_admin_verification;
+
+    /**
+     * @return mixed
+     */
+    public function getIsPaid()
+    {
+        return $this->is_paid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNeedAdminVerification()
+    {
+        return $this->need_admin_verification;
+    }
 
 
     /**
@@ -49,9 +67,6 @@ class PurchasingHeaderReceiveDto extends BaseAbstractDto
     }
 
 
-
-
-
     protected function configureValidatorRules(): array
     {
 
@@ -60,6 +75,8 @@ class PurchasingHeaderReceiveDto extends BaseAbstractDto
             'subTotal' => 'required',
             'freight' => 'required',
             'purchase_order_id' => 'required',
+            'is_paid' => 'required',
+            'need_admin_verification' => 'required'
         ];
     }
 
@@ -71,7 +88,8 @@ class PurchasingHeaderReceiveDto extends BaseAbstractDto
         $this->subtotal = $data['subTotal'];
         $this->freight = $data['freight'];
         $this->purchase_order_id = $data['purchase_order_id'];
-
+        $this->is_paid = $data['is_paid'];
+        $this->need_admin_verification = $data['need_admin_verification'];
         return true;
     }
 }
