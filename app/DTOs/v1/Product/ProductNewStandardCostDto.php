@@ -31,7 +31,7 @@ class ProductNewStandardCostDto extends BaseAbstractDto
     {
         return [
             'product_id' => 'required',
-            'standard_code' => 'required',
+            'standard_cost' => 'required',
         ];
     }
 
