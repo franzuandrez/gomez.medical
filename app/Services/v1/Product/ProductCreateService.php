@@ -46,11 +46,17 @@ class ProductCreateService implements ServiceInterface
         $product->code = $this->dto->getCode();
         $product->name = $this->dto->getName();
         $product->description = $this->dto->getDescription();
+        $product->standard_cost = $this->dto->getCost();
+        $product->list_price = $this->dto->getListPrice();
+        $product->description = $this->dto->getDescription();
         $product->color = $this->dto->getColor();
         $product->size = $this->dto->getSize();
-        $product->weight = $this->dto->getWeight();
+        $product->size_unit_measure_code = $this->dto->getSizeUnitMeasureCode();
         $product->product_subcategory_id = $this->dto->getProductSubcategoryId();
         $product->instructions = $this->dto->getInstructions();
+        $product->brand_id = $this->dto->getBrandId();
+        $product->weight = $this->dto->getWeight();
+        $product->weight_unit_measure_code = $this->dto->getWeightUnitMeasureCode();
         $product->save();
 
         return $product->toArray();

@@ -17,39 +17,53 @@ class ProductCreateDto extends BaseAbstractDto
     private $product_subcategory_id;
     private $code;
     private $instructions;
-    private $weight = 0;
+    private $weight;
+    private $brand_id;
+    private $size_unit_measure_code;
+    private $weight_unit_measure_code;
+    private $cost;
+    private $list_price;
 
-
-
-
-
-    protected function configureValidatorRules(): array
+    /**
+     * @return mixed
+     */
+    public function getCost()
     {
-        return [
-            'sku' => 'required',
-            'name' => 'required',
-            'description' => 'required',
-            'color' => 'required',
-            'size' => 'required',
-            'product_subcategory_id' => 'required',
-        ];
+        return $this->cost;
     }
 
-    protected function map(array $data): bool
+    /**
+     * @return mixed
+     */
+    public function getListPrice()
     {
-        $this->code = $data['code'];
-        $this->sku = $data['sku'];
-        $this->name = $data['name'];
-        $this->description = $data['description'];
-        $this->color = $data['color'];
-        $this->size = $data['size'];
-        $this->product_subcategory_id = $data['product_subcategory_id'];
-
-        return true;
+        return $this->list_price;
     }
 
 
+    /**
+     * @return mixed
+     */
+    public function getBrandId()
+    {
+        return $this->brand_id;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getSizeUnitMeasureCode()
+    {
+        return $this->size_unit_measure_code;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWeightUnitMeasureCode()
+    {
+        return $this->weight_unit_measure_code;
+    }
 
 
     /**
@@ -68,16 +82,14 @@ class ProductCreateDto extends BaseAbstractDto
         return $this->instructions;
     }
 
+
     /**
-     * @return int
+     * @return mixed
      */
-    public function getWeight(): int
+    public function getWeight()
     {
         return $this->weight;
     }
-
-
-
 
     /**
      * @return mixed
@@ -94,6 +106,7 @@ class ProductCreateDto extends BaseAbstractDto
     {
         return $this->name;
     }
+
 
     /**
      * @return mixed
@@ -125,6 +138,40 @@ class ProductCreateDto extends BaseAbstractDto
     public function getProductSubcategoryId()
     {
         return $this->product_subcategory_id;
+    }
+
+    protected function configureValidatorRules(): array
+    {
+        return [
+            'sku' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'color' => 'required',
+            'size' => 'required',
+            'product_subcategory_id' => 'required',
+            'brand_id' => 'required',
+            'cost' => 'required',
+            'price' => 'required',
+        ];
+    }
+
+    protected function map(array $data): bool
+    {
+        $this->code = $data['code'];
+        $this->list_price = $data['price'];
+        $this->cost = $data['cost'];
+        $this->sku = $data['sku'];
+        $this->name = $data['name'];
+        $this->description = $data['description'];
+        $this->color = $data['color'];
+        $this->size = $data['size'];
+        $this->product_subcategory_id = $data['product_subcategory_id'];
+        $this->brand_id = $data['brand_id'];
+        $this->weight = $data['weight'];
+        $this->size_unit_measure_code = $data['size_unit_measure_code'];
+        $this->weight_unit_measure_code = $data['weight_unit_measure_code'];
+
+        return true;
     }
 
 

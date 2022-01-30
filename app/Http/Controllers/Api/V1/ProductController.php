@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\v1;
 
 
+use App\DTOs\v1\Product\ProductNewStandardCostDto;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\ProductResource;
 use App\Models\Product;
@@ -14,6 +15,7 @@ use App\Services\v1\Product\ProductAddImagesService;
 use App\Services\v1\Product\ProductCreateService;
 use App\Services\v1\Product\ProductEditService;
 use App\Services\v1\Product\ProductNewPriceListService;
+use App\Services\v1\Product\ProductNewStandardCostService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
@@ -69,6 +71,13 @@ class ProductController extends Controller
 
         $product_price_list_service = ProductNewPriceListService::make($dto_price_list);
         $product_price_list_service->execute();
+
+        $dto_cost = new ProductNewStandardCostDto([
+            'standard_cost' => $request->get('cost'),
+            'product_id' => $product['product_id']
+        ]);
+        $product_cost_service = ProductNewStandardCostService::make($dto_cost);
+        $product_cost_service->execute();
 
         //TODO refactor validation
 
