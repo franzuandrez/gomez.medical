@@ -36,6 +36,7 @@ use App\Http\Controllers\Api\V1\ProductSubCategoryController;
 use App\Http\Controllers\Api\V1\PurchaseController;
 use App\Http\Controllers\api\v1\PurchaseEditProductController;
 use App\Http\Controllers\api\v1\PurchaseHeaderDetailController;
+use App\Http\Controllers\api\v1\PurchaseHeaderFinishPriceEditionController;
 use App\Http\Controllers\Api\V1\PurchaseLocateProductsController;
 use App\Http\Controllers\Api\V1\RackController;
 use App\Http\Controllers\Api\V1\RackLevelsController;
@@ -128,6 +129,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('v1/control_cash_register/{id}', [ControlCashRegisterController::class, 'update']);
     Route::post('v1/payments', [PaymentController::class, 'store']);
     Route::patch('v1/purchase_product_price/{id}', [PurchaseEditProductController::class, 'update']);
+    Route::patch('v1/purchase_header_finish_price_edition/{id}', [PurchaseHeaderFinishPriceEditionController::class, 'update']);
 });
 Route::get('v1/default_customer', [CustomerGetDefaultController::class, 'index']);
 
