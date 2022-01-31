@@ -22,6 +22,8 @@ class PurchaseResource extends JsonResource
             'purchase_order_id' => $this->purchase_order_id,
             'status' => $this->getStatusName($this->status) ,
             'order_date' => $this->order_date,
+            'needs_admin_verification' => $this->needs_admin_verification,
+            'is_paid' => $this->is_paid,
             'subtotal' => $this->subtotal,
             'tax_amount' => $this->tax_amount,
             'freight' => $this->freight,
