@@ -133,7 +133,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('v1/purchase_header_finish_price_edition/{id}', [PurchaseHeaderFinishPriceEditionController::class, 'update']);
     Route::post('v1/purchase/make_payment', [PurchasePaymentController::class, 'store']);
 });
-Route::get('v1/purchase/{id}/payments', [PurchasePaymentController::class, 'index']);
+Route::get('v1/purchases/{id}/payments', [PurchasePaymentController::class, 'index']);
 Route::get('v1/default_customer', [CustomerGetDefaultController::class, 'index']);
 
 Route::get('v1/payments', [PaymentController::class, 'index']);
