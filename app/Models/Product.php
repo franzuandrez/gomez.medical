@@ -82,12 +82,12 @@ class Product extends Model
 
     public function sizeMeasure(): BelongsTo
     {
-        return $this->belongsTo(UnitMeasure::class, 'unit_measure_code', 'size_unit_measure_code');
+        return $this->belongsTo(UnitMeasure::class, 'size_unit_measure_code', 'unit_measure_code');
     }
 
     public function weightMeasure(): BelongsTo
     {
-        return $this->belongsTo(UnitMeasure::class, 'unit_measure_code', 'weight_unit_measure_code');
+        return $this->belongsTo(UnitMeasure::class, 'weight_unit_measure_code', 'unit_measure_code');
     }
 
 }
