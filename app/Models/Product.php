@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
@@ -28,7 +29,7 @@ class Product extends Model
     public const CREATED_AT = 'createdAt';
     public const UPDATED_AT = 'updatedAt';
 
-    public function subcategory(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function subcategory(): BelongsTo
     {
         return $this
             ->belongsTo(ProductSubcategory::class,
@@ -72,4 +73,12 @@ class Product extends Model
             ->orderBy('product_list_price_id', 'desc')
             ->limit(1);
     }
+
+
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(Brand::class, 'brand_id', 'brand_id');
+    }
+
+
 }
