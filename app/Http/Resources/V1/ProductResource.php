@@ -22,14 +22,17 @@ class ProductResource extends JsonResource
             'code' => $this->code,
             'name' => $this->name,
             'description' => $this->description,
-            'description_formatted' => strip_tags($this->description) ,
+            'description_formatted' => strip_tags($this->description),
             'color' => $this->color,
             'size' => $this->size,
             'weight' => $this->weight,
             'instructions' => $this->instructions,
             'subcategory' => new ProductSubCategoryResource($this->subcategory),
             'current_price' => new ProductPriceResource($this->currentPrice),
-            'images' => $this->photos
+            'images' => $this->photos,
+            'brand' => $this->brand,
+            'sizeMeasure' => $this->sizeMeasure,
+            'weightMeasure' => $this->weightMeasure,
         ];
     }
 }
