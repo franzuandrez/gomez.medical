@@ -31,6 +31,9 @@ class ProductResource extends JsonResource
             'current_price' => new ProductPriceResource($this->currentPrice),
             'images' => $this->photos,
             'brand' => $this->brand,
+            'brand_id' => $this->brand_id,
+            'size_unit_measure_code' => $this->size_unit_measure_code,
+            'weight_unit_measure_code' => $this->weight_unit_measure_code,
             'sizeMeasure' => $this->sizeMeasure,
             'weightMeasure' => $this->weightMeasure,
         ];
