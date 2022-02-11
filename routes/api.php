@@ -34,6 +34,7 @@ use App\Http\Controllers\Api\V1\PositionController;
 use App\Http\Controllers\api\v1\PrintoutController;
 use App\Http\Controllers\Api\V1\ProductCategoryController;
 use App\Http\Controllers\Api\V1\ProductController;
+use App\Http\Controllers\api\v1\ProductImageController;
 use App\Http\Controllers\Api\V1\ProductSubCategoryController;
 use App\Http\Controllers\Api\V1\PurchaseController;
 use App\Http\Controllers\api\v1\PurchaseEditProductController;
@@ -156,5 +157,6 @@ Route::get('v1/brands/{id}', [BrandController::class, 'show']);
 Route::patch('v1/brands/{id}', [BrandController::class, 'update']);
 Route::get('v1/unit_measures', [UnitMeasureController::class, 'index']);
 
+Route::delete('v1/product/image/{id}', [ProductImageController::class, 'destroy']);
 Route::get('v1/price/history/{id}', [ListPriceHistoryController::class, 'index']);
 Route::get('v1/cost/history/{id}', [ListCostHistoryController::class, 'index']);
