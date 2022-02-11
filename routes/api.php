@@ -22,6 +22,7 @@ use App\Http\Controllers\api\v1\InventoryPrintoutController;
 use App\Http\Controllers\api\v1\LabelTypeController;
 use App\Http\Controllers\Api\V1\LevelController;
 use App\Http\Controllers\Api\V1\LevelPositionsController;
+use App\Http\Controllers\api\v1\ListCostHistoryController;
 use App\Http\Controllers\api\v1\ListPriceHistoryController;
 use App\Http\Controllers\api\v1\PaymentController;
 use App\Http\Controllers\api\v1\PaymentTypeController;
@@ -156,3 +157,4 @@ Route::patch('v1/brands/{id}', [BrandController::class, 'update']);
 Route::get('v1/unit_measures', [UnitMeasureController::class, 'index']);
 
 Route::get('v1/price/history/{id}', [ListPriceHistoryController::class, 'index']);
+Route::get('v1/cost/history/{id}', [ListCostHistoryController::class, 'index']);
