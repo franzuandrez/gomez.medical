@@ -22,6 +22,7 @@ use App\Http\Controllers\api\v1\InventoryPrintoutController;
 use App\Http\Controllers\api\v1\LabelTypeController;
 use App\Http\Controllers\Api\V1\LevelController;
 use App\Http\Controllers\Api\V1\LevelPositionsController;
+use App\Http\Controllers\api\v1\ListPriceHistoryController;
 use App\Http\Controllers\api\v1\PaymentController;
 use App\Http\Controllers\api\v1\PaymentTypeController;
 use App\Http\Controllers\api\v1\PersonController;
@@ -97,6 +98,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('v1/products', [ProductController::class, 'store']);
     Route::get('v1/products/{id}', [ProductController::class, 'show']);
     Route::patch('v1/products/{id}', [ProductController::class, 'update']);
+
     Route::get('v1/vendors/{vendor_id}/products', [VendorProductsController::class, 'index']);
     Route::post('v1/vendors/{vendor_id}/products/{product_id}', [VendorProductsController::class, 'store']);
     Route::patch('v1/vendors/{vendor_id}/products/{product_id}', [VendorProductsController::class, 'update']);
@@ -153,3 +155,4 @@ Route::get('v1/brands/{id}', [BrandController::class, 'show']);
 Route::patch('v1/brands/{id}', [BrandController::class, 'update']);
 Route::get('v1/unit_measures', [UnitMeasureController::class, 'index']);
 
+Route::get('v1/price/history/{id}', [ListPriceHistoryController::class, 'index']);
