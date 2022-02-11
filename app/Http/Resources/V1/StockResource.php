@@ -27,6 +27,7 @@ class StockResource extends JsonResource
             'color' => $this->color,
             'size' => $this->size,
             'category' => $this->category,
+            'brand' => $this->brand,
             'subcategory' => $this->subcategory,
             'stock' => floatval($this->stock),
             'images' => $this->product->photos,
