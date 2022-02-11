@@ -14,7 +14,9 @@ class ListPriceHistoryController extends Controller
     {
         //
 
-        $prices = ProductListPriceHistory::whereProductId($id)->paginate(15);
+        $prices = ProductListPriceHistory::whereProductId($id)
+            ->orderBy('createdAt','desc')
+            ->paginate(15);
 
 
         return ListPriceHistoryCollectionResource::collection($prices);
