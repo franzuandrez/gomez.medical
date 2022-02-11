@@ -90,11 +90,13 @@ class StockRepository implements StockRepositoryInterface
             'product.color',
             'product.size',
             'product_subcategory.name as subcategory',
+            'product_category.name as category',
             \DB::raw('sum(movement_type.factor * inventory.quantity) as stock')
         )
             ->join('movement_type', 'movement_type.movement_type_id', '=', 'inventory.movement_type_id')
             ->join('product', 'product.product_id', '=', 'inventory.product_id')
             ->join('product_subcategory', 'product_subcategory.product_subcategory_id', '=', 'product.product_subcategory_id')
+            ->join('product_category', 'product_category.product_category_id', '=', 'product_subcategory.product_category_id')
             ->join('bin', 'bin.bin_id', '=', 'inventory.bin_id')
             ->orderBy('inventory.best_before', 'asc')
             ->groupBy('inventory.product_id')
