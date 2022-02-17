@@ -157,6 +157,7 @@ Route::get('v1/brands/{id}', [BrandController::class, 'show']);
 Route::patch('v1/brands/{id}', [BrandController::class, 'update']);
 Route::get('v1/unit_measures', [UnitMeasureController::class, 'index']);
 
+Route::post('v1/product/image', [ProductImageController::class, 'store']);
 Route::delete('v1/product/image/{id}', [ProductImageController::class, 'destroy']);
 Route::delete('v1/product/images/{id}', [ProductImageController::class, 'destroy_many']);
 Route::get('v1/price/history/{id}', [ListPriceHistoryController::class, 'index']);

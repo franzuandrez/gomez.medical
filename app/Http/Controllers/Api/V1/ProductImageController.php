@@ -2,14 +2,37 @@
 
 namespace App\Http\Controllers\api\v1;
 
+use App\DTOs\v1\Product\ProductAddImagesDto;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductPhoto;
+use App\Services\v1\Product\ProductAddImagesService;
 use Illuminate\Http\Request;
 
 class ProductImageController extends Controller
 {
     //
+
+    public function store(Request $request)
+    {
+        $product = Product::find($request->get('product_id'));
+
+        $images = array_key_exists('images', $request->allFiles()) ? $request->allFiles()['images'] : [];
+        if (count($images) > 0) {
+
+            $dto_images = new ProductAddImagesDto(
+                [
+                    'product_id' => $product->product_id,
+                    'product_name' => $product->name,
+                    'images' => $request->allFiles()['images'],
+                ]
+            );
+            $product_images_service = ProductAddImagesService::make($dto_images);
+            $product_images_service->execute();
+        }
+
+        return response($product->toArray(), 201);
+    }
 
     public function destroy($id)
     {

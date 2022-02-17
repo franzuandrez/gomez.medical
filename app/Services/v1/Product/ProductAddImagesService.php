@@ -70,7 +70,7 @@ class ProductAddImagesService implements ServiceInterface
         Storage::disk('s3')
             ->delete(
                 $images->map(function ($item) {
-                    return 'products/' . $item->path;
+                    return 'products/' . $item->file_name;
                 })->toArray()
             );
 
