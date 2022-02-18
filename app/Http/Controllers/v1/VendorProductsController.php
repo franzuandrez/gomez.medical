@@ -6,7 +6,7 @@ use App\DTOs\v1\Vendor\VendorAddProductDto;
 use App\DTOs\v1\Vendor\VendorDeleteProductAddedDto;
 use App\DTOs\v1\Vendor\VendorEditProductAddedDto;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\VendorProductsResource;
+use App\Http\Resources\v2\VendorProductsResource;
 use App\Models\ProductVendor;
 
 use App\Services\v1\Vendor\VendorAddProductService;

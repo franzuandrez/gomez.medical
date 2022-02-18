@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\StockCollectionResource;
+use App\Http\Resources\v2\StockCollectionResource;
 use App\Repositories\v1\Interfaces\StockRepositoryInterface;
 use Illuminate\Http\Request;
 

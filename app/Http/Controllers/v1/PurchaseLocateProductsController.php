@@ -4,7 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\DTOs\v1\Inventory\InventoryMovementDto;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\InventoryResource;
+use App\Http\Resources\v2\InventoryResource;
 use App\Models\InventoryMovement;
 use App\Models\PurchaseOrderDetail;
 use App\Models\PurchaseOrderHeader;

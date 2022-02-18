@@ -4,8 +4,8 @@ namespace App\Http\Controllers\v1;
 
 use App\DTOs\v1\Printout\PrintoutPrintDto;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\PrintoutCollectionResource;
-use App\Http\Resources\v1\PrintoutResource;
+use App\Http\Resources\v2\PrintoutCollectionResource;
+use App\Http\Resources\v2\PrintoutResource;
 use App\Models\Printout;
 use App\Models\Product;
 use App\Services\v1\Printout\PrintoutPrintService;

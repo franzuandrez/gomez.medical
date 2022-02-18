@@ -4,7 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\DTOs\v1\Purchasing\PurchasingEditProductPriceDto;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\PurchaseEditProductResource;
+use App\Http\Resources\v2\PurchaseEditProductResource;
 use App\Models\PurchaseOrderDetail;
 use App\Services\v1\Purchasing\PurchasingEditProductPriceService;
 use Illuminate\Http\Request;

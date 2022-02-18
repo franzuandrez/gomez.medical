@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\ListPriceHistoryCollectionResource;
+use App\Http\Resources\v2\ListPriceHistoryCollectionResource;
 use App\Models\ProductListPriceHistory;
 use Illuminate\Http\Request;
 

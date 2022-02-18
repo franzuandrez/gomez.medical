@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\CorridorResource;
-use App\Http\Resources\v1\SectionLocationResource;
+use App\Http\Resources\v2\CorridorResource;
+use App\Http\Resources\v2\SectionLocationResource;
 use App\Models\Corridor;
 use App\Models\SectionLocation;
 use Illuminate\Http\Request;

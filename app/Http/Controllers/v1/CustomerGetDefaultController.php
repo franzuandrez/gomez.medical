@@ -6,7 +6,7 @@ use App\DTOs\v1\BusinessEntity\BusinessEntityCreateDto;
 use App\DTOs\v1\Customer\CustomerCreateDto;
 use App\DTOs\v1\Person\PersonCreateDto;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\CustomerResource;
+use App\Http\Resources\v2\CustomerResource;
 use App\Models\Address;
 use App\Models\AddressType;
 use App\Models\BusinessEntityAddress;

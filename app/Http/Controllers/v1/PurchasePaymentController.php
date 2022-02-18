@@ -4,7 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\DTOs\v1\Purchasing\PurchasingMakePaymentDto;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\PurchasePaymentCollectionResource;
+use App\Http\Resources\v2\PurchasePaymentCollectionResource;
 use App\Models\PurchasePayment;
 use App\Services\v1\Purchasing\PurchasingMakePaymentService;
 use Exception;

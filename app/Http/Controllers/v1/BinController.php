@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\BinResource;
+use App\Http\Resources\v2\BinResource;
 use App\Models\Bin;
 use App\Models\Position;
 use Illuminate\Http\Request;

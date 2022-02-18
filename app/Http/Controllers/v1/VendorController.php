@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\VendorResource;
+use App\Http\Resources\v2\VendorResource;
 
 use App\Models\Vendor;
 use App\DTOs\v1\Vendor\VendorEditDto;

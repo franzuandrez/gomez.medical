@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\CorridorRacksResource;
+use App\Http\Resources\v2\CorridorRacksResource;
 use App\Models\Rack;
 use Illuminate\Http\Request;
 

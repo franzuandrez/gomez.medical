@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\ProductSubCategoryResource;
+use App\Http\Resources\v2\ProductSubCategoryResource;
 use App\Models\ProductSubcategory;
 use Illuminate\Http\Request;
 

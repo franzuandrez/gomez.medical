@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\v1\WarehouseRequest;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
-use App\Http\Resources\v1\WarehouseResource;
+use App\Http\Resources\v2\WarehouseResource;
 
 class WarehouseController extends Controller
 {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\DTOs\v1\PayInPayOut\PayInPayOutCreateDto;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\PaymentCollectionResource;
+use App\Http\Resources\v2\PaymentCollectionResource;
 use App\Models\PayInPayOut;
 use App\Services\v1\PayInPayOut\PayInPayOutCreateService;
 use Illuminate\Http\Request;

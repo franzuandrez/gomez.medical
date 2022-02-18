@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\AddressTypeResource;
+use App\Http\Resources\v2\AddressTypeResource;
 use App\Models\AddressType;
 use Illuminate\Http\Request;
 

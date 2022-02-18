@@ -5,7 +5,7 @@ namespace App\Http\Controllers\v1;
 
 use App\DTOs\v1\Product\ProductNewStandardCostDto;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\ProductResource;
+use App\Http\Resources\v2\ProductResource;
 use App\Models\Product;
 use App\DTOs\v1\Product\ProductAddImagesDto;
 use App\DTOs\v1\Product\ProductCreateDto;

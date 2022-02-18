@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\PhoneNumberTypeResource;
+use App\Http\Resources\v2\PhoneNumberTypeResource;
 use App\Models\PhoneNumberType;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
