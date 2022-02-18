@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Resources\V1\UserResource;
+use App\Http\Resources\v1\UserResource;
 
 class AuthController extends Controller
 {

@@ -6,7 +6,7 @@ use App\DTOs\v1\Employee\EmployeeAddUserDto;
 use App\DTOs\v1\User\UserAddDto;
 use App\DTOs\v1\User\UserEditDto;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\UserResource;
+use App\Http\Resources\v1\UserResource;
 use App\Models\User;
 use App\Services\v1\Employee\EmployeeAddUserService;
 use App\Services\v1\User\UserAddService;
