@@ -7,7 +7,7 @@ namespace App\Services\v1\Sales;
 use App\DTOs\v1\BaseAbstractDto;
 use App\DTOs\v1\Inventory\InventoryMovementDto;
 use App\DTOs\v1\Sales\SalesDetailCreateDto;
-use App\Http\Resources\V1\InventoryResource;
+use App\Http\Resources\v1\InventoryResource;
 use App\Models\Bin;
 use App\Models\SalesOrderDetail;
 use App\Models\Product;

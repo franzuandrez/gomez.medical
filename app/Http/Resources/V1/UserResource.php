@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\V1;
+namespace App\Http\Resources\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,8 +21,9 @@ class UserResource extends JsonResource
             'displayName' => $this->name,
             'email' => $this->email,
             'employee' => $employee,
-            'person'=> $employee->businessEntity->person,
-            'business_entity' => new BusinessEntityResource($employee->businessEntity)
+            'person' => $employee->businessEntity->person,
+            'business_entity' => new BusinessEntityResource($employee->businessEntity),
+            'roles' => $this->roles
         ];
     }
 }
