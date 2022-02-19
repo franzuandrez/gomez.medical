@@ -50,8 +50,8 @@ class ProductAddImagesService implements ServiceInterface
             $name = $name_without_spaces . '-' . Carbon::now()->unix() . '-' . $imageKey . '.' . $image_extension;
             $img = Image::make($image->getRealPath());
             $img->stream(); // <-- Key point
-            Storage::disk('s3')->put('products/' .$name, $img, 'public');
-            $url = Storage::disk('s3')->url('products/' .$name);
+            Storage::disk('s3')->put('products/' . $name, $img, 'public');
+            $url = Storage::disk('s3')->url('products/' . $name);
 
             $product_photo = new ProductPhoto();
             $product_photo->product_id = $this->dto->getProductId();
@@ -70,13 +70,13 @@ class ProductAddImagesService implements ServiceInterface
         $images = ProductPhoto::where('product_id', $this->dto->getProductId())
             ->get();
 
+        ProductPhoto::destroy($images->map(function ($item) {
+            return $item->product_photo_id;
+        }));
 
-        Storage::disk('s3')
-            ->delete(
-                $images->map(function ($item) {
-                    return 'products/' . $item->file_name;
-                })->toArray()
-            );
+        $images->map(function ($item) {
+            \Storage::disk('s3')->delete('products/' . $item->file_name);
+        });
 
     }
 }

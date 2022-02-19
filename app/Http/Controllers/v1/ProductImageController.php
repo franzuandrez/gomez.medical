@@ -56,10 +56,11 @@ class ProductImageController extends Controller
         }));
 
         if ($deleted) {
-            \Storage::delete($images->map(function ($item) {
-                return 'products/' . $item->file_name;
-            }));
+            $images->map(function ($item) {
+                \Storage::disk('s3')->delete('products/' . $item->file_name);
+            });
         }
+
 
 
         return response("", 202);
