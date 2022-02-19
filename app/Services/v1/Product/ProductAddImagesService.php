@@ -10,6 +10,7 @@ use App\DTOs\v1\Product\ProductAddImagesDto;
 use App\Services\v1\ServiceInterface;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use InvalidArgumentException;
 
 
@@ -47,8 +48,9 @@ class ProductAddImagesService implements ServiceInterface
             $image_extension = $image->clientExtension();
             $name_without_spaces = preg_replace('/\s+/', '-', $this->dto->getProductName());
             $name = $name_without_spaces . '-' . Carbon::now()->unix() . '-' . $imageKey . '.' . $image_extension;
-            Storage::disk('s3')->put('products/' . $name, $image, 'public');
-            $url = Storage::disk('s3')->url('products/' . $name);
+            $img = Image::make($image->getRealPath());
+            Storage::disk('s3')->put('products/' .$name, $img, 'public');
+            $url = Storage::disk('s3')->url('products/' .$name);
             $product_photo = new ProductPhoto();
             $product_photo->product_id = $this->dto->getProductId();
             $product_photo->file_name = $name;
