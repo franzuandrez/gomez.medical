@@ -56,6 +56,10 @@ class ProductController extends Controller
         //
 
 
+        if (Product::where('sku', $request->sku)->exists()) {
+            return response(["message" => "SKU Existente"], 500);
+        }
+
         $dto_product = new ProductCreateDto($request->all());
 
 
