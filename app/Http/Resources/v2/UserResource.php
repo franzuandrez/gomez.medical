@@ -23,7 +23,8 @@ class UserResource extends JsonResource
             'employee' => $employee,
             'person' => $employee->businessEntity->person,
             'business_entity' => new BusinessEntityResource($employee->businessEntity),
-            'roles' => $this->roles
+            'roles' => $this->roles,
+            'permissions' => $this->getAllPermissions(),
         ];
     }
 }
