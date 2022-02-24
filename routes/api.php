@@ -79,7 +79,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/user', [AuthController::class, 'show']);
     Route::apiResource('v1/warehouses', WarehouseController::class);
     Route::get('v1/warehouses/{id}/sections', [WarehouseSectionsController::class, 'index']);
-    Route::apiResource('v1/sections', SectionLocationController::class);
+    Route::group(['middleware' => ['permission:show sections']], function () {
+        Route::apiResource('v1/sections', SectionLocationController::class);
+    });
+
     Route::get('v1/sections/{id}/corridors', [SectionCorridorsController::class, 'index']);
     Route::apiResource('v1/corridors', CorridorController::class);
     Route::get('v1/corridors/{id}/racks', [CorridorRacksController::class, 'index']);
@@ -162,3 +165,5 @@ Route::delete('v1/product/image/{id}', [ProductImageController::class, 'destroy'
 Route::delete('v1/product/images/{id}', [ProductImageController::class, 'destroy_many']);
 Route::get('v1/price/history/{id}', [ListPriceHistoryController::class, 'index']);
 Route::get('v1/cost/history/{id}', [ListCostHistoryController::class, 'index']);
+
+\Route::get('v1/user/{id}', [UserController::class, 'show']);
