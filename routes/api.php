@@ -79,7 +79,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/user', [AuthController::class, 'show']);
     Route::apiResource('v1/warehouses', WarehouseController::class);
     Route::get('v1/warehouses/{id}/sections', [WarehouseSectionsController::class, 'index']);
-    Route::group(['middleware' => ['permission:show sections']], function () {
+    Route::group(['middleware' => ['permission:list sections']], function () {
         Route::apiResource('v1/sections', SectionLocationController::class);
     });
 
